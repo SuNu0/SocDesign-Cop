@@ -1,0 +1,10 @@
+test_encoding (__main__.NumericTests) ... ok
+test_matrix_vs_sequential_mac (__main__.NumericTests) ... ok
+test_round_ties_and_neighbors (__main__.NumericTests) ... ok
+test_saturation_and_wide_bias_sum (__main__.NumericTests) ... ok
+test_signed_extremes (__main__.NumericTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.013s
+
+OK

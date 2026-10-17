@@ -1,0 +1,1376 @@
+[
+  {
+    "name": "kws_transformer/dense/kernel",
+    "shape": [
+      40,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/patch_proj/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/dense/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/patch_proj/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/multi_head_self_attention/dense_1/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/multi_head_self_attention/dense_2/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/multi_head_self_attention/dense_3/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/multi_head_self_attention/dense_4/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/multi_head_self_attention/dense_4/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/sequential/dense_5/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/sequential/dense_5/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/sequential/dense_6/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/sequential/dense_6/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/layer_normalization/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/layer_normalization/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/layer_normalization_1/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block/layer_normalization_1/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/0/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/multi_head_self_attention_1/dense_7/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/multi_head_self_attention_1/dense_8/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/multi_head_self_attention_1/dense_9/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/multi_head_self_attention_1/dense_10/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/multi_head_self_attention_1/dense_10/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/sequential_1/dense_11/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/sequential_1/dense_11/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/sequential_1/dense_12/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/sequential_1/dense_12/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/layer_normalization_2/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/layer_normalization_2/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/layer_normalization_3/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_1/layer_normalization_3/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/1/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/multi_head_self_attention_2/dense_13/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/multi_head_self_attention_2/dense_14/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/multi_head_self_attention_2/dense_15/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/multi_head_self_attention_2/dense_16/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/multi_head_self_attention_2/dense_16/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/sequential_2/dense_17/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/sequential_2/dense_17/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/sequential_2/dense_18/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/sequential_2/dense_18/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/layer_normalization_4/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/layer_normalization_4/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/layer_normalization_5/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_2/layer_normalization_5/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/2/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/multi_head_self_attention_3/dense_19/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/multi_head_self_attention_3/dense_20/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/multi_head_self_attention_3/dense_21/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/multi_head_self_attention_3/dense_22/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/multi_head_self_attention_3/dense_22/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/sequential_3/dense_23/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/sequential_3/dense_23/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/sequential_3/dense_24/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/sequential_3/dense_24/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/layer_normalization_6/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/layer_normalization_6/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/layer_normalization_7/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_3/layer_normalization_7/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/3/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/multi_head_self_attention_4/dense_25/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/multi_head_self_attention_4/dense_26/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/multi_head_self_attention_4/dense_27/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/multi_head_self_attention_4/dense_28/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/multi_head_self_attention_4/dense_28/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/sequential_4/dense_29/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/sequential_4/dense_29/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/sequential_4/dense_30/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/sequential_4/dense_30/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/layer_normalization_8/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/layer_normalization_8/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/layer_normalization_9/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_4/layer_normalization_9/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/4/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/multi_head_self_attention_5/dense_31/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/multi_head_self_attention_5/dense_32/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/multi_head_self_attention_5/dense_33/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/multi_head_self_attention_5/dense_34/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/multi_head_self_attention_5/dense_34/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/sequential_5/dense_35/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/sequential_5/dense_35/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/sequential_5/dense_36/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/sequential_5/dense_36/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/layer_normalization_10/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/layer_normalization_10/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/layer_normalization_11/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_5/layer_normalization_11/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/5/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/multi_head_self_attention_6/dense_37/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/multi_head_self_attention_6/dense_38/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/multi_head_self_attention_6/dense_39/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/multi_head_self_attention_6/dense_40/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/multi_head_self_attention_6/dense_40/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/sequential_6/dense_41/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/sequential_6/dense_41/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/sequential_6/dense_42/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/sequential_6/dense_42/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/layer_normalization_12/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/layer_normalization_12/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/layer_normalization_13/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_6/layer_normalization_13/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/6/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/multi_head_self_attention_7/dense_43/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/multi_head_self_attention_7/dense_44/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/multi_head_self_attention_7/dense_45/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/multi_head_self_attention_7/dense_46/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/multi_head_self_attention_7/dense_46/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/sequential_7/dense_47/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/sequential_7/dense_47/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/sequential_7/dense_48/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/sequential_7/dense_48/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/layer_normalization_14/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/layer_normalization_14/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/layer_normalization_15/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_7/layer_normalization_15/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/7/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/multi_head_self_attention_8/dense_49/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/multi_head_self_attention_8/dense_50/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/multi_head_self_attention_8/dense_51/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/multi_head_self_attention_8/dense_52/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/multi_head_self_attention_8/dense_52/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/sequential_8/dense_53/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/sequential_8/dense_53/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/sequential_8/dense_54/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/sequential_8/dense_54/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/layer_normalization_16/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/layer_normalization_16/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/layer_normalization_17/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_8/layer_normalization_17/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/8/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/multi_head_self_attention_9/dense_55/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/multi_head_self_attention_9/dense_56/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/multi_head_self_attention_9/dense_57/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/multi_head_self_attention_9/dense_58/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/multi_head_self_attention_9/dense_58/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/sequential_9/dense_59/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/sequential_9/dense_59/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/sequential_9/dense_60/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/sequential_9/dense_60/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/layer_normalization_18/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/layer_normalization_18/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/layer_normalization_19/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_9/layer_normalization_19/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/9/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/multi_head_self_attention_10/dense_61/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/multi_head_self_attention_10/dense_62/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/multi_head_self_attention_10/dense_63/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/multi_head_self_attention_10/dense_64/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/multi_head_self_attention_10/dense_64/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/sequential_10/dense_65/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/sequential_10/dense_65/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/sequential_10/dense_66/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/sequential_10/dense_66/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/layer_normalization_20/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/layer_normalization_20/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/layer_normalization_21/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_10/layer_normalization_21/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/10/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/multi_head_self_attention_11/dense_67/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/att/query_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/multi_head_self_attention_11/dense_68/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/att/key_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/multi_head_self_attention_11/dense_69/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/att/value_dense/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/multi_head_self_attention_11/dense_70/kernel",
+    "shape": [
+      64,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/att/combine_heads/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/multi_head_self_attention_11/dense_70/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/att/combine_heads/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/sequential_11/dense_71/kernel",
+    "shape": [
+      64,
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/ffn/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/sequential_11/dense_71/bias",
+    "shape": [
+      256
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/ffn/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/sequential_11/dense_72/kernel",
+    "shape": [
+      256,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/ffn/layer_with_weights-1/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/sequential_11/dense_72/bias",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/ffn/layer_with_weights-1/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/layer_normalization_22/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/layernorm1/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/layer_normalization_22/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/layernorm1/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/layer_normalization_23/gamma",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/layernorm2/gamma/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "kws_transformer/transformer_block_11/layer_normalization_23/beta",
+    "shape": [
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/enc_layers/11/layernorm2/beta/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "pos_emb",
+    "shape": [
+      1,
+      99,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/pos_emb/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "class_emb",
+    "shape": [
+      1,
+      1,
+      64
+    ],
+    "checkpoint_key": "layer_with_weights-0/class_emb/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "sequential_12/dense_73/kernel",
+    "shape": [
+      64,
+      12
+    ],
+    "checkpoint_key": "layer_with_weights-1/layer_with_weights-0/kernel/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  },
+  {
+    "name": "sequential_12/dense_73/bias",
+    "shape": [
+      12
+    ],
+    "checkpoint_key": "layer_with_weights-1/layer_with_weights-0/bias/.ATTRIBUTES/VARIABLE_VALUE",
+    "exact_equal": true
+  }
+]

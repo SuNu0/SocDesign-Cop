@@ -1,0 +1,97 @@
+{
+  "validation_samples": 4445,
+  "complete_validation": true,
+  "calibration_samples": 192,
+  "classification_accuracy_observation": 0.978177727784027,
+  "instrumentation_logits_max_abs_diff": 0.0,
+  "max_layer_nrmse": 0.0002757794505043335,
+  "threshold": 0.03,
+  "local_precision_pass": true,
+  "official_600_sample_pass": false,
+  "layers": [
+    {
+      "layer": 0,
+      "nrmse": 0.00013730583229759844,
+      "worst_task_nrmse": 0.00015903103002781017,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 1,
+      "nrmse": 0.00013595351243278397,
+      "worst_task_nrmse": 0.00018471558762633478,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 2,
+      "nrmse": 0.0002757794505043335,
+      "worst_task_nrmse": 0.0003422098000480961,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 3,
+      "nrmse": 0.00016806037294652781,
+      "worst_task_nrmse": 0.000225613062159987,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 4,
+      "nrmse": 0.00019512379428937815,
+      "worst_task_nrmse": 0.00024913345691789324,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 5,
+      "nrmse": 0.000195371770237608,
+      "worst_task_nrmse": 0.0002687952071471002,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 6,
+      "nrmse": 0.0002110691172232659,
+      "worst_task_nrmse": 0.0003200841734101057,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 7,
+      "nrmse": 0.00019616051400774112,
+      "worst_task_nrmse": 0.00023297033693157152,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 8,
+      "nrmse": 0.00019679449194397083,
+      "worst_task_nrmse": 0.0002366277002139348,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 9,
+      "nrmse": 0.00016665455568731603,
+      "worst_task_nrmse": 0.00020372682786499216,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 10,
+      "nrmse": 0.00014743978629808366,
+      "worst_task_nrmse": 0.00017744623904580414,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 11,
+      "nrmse": 0.00011610199820328281,
+      "worst_task_nrmse": 0.00014074116933371383,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Generated/local resources
+.venv*/
+__pycache__/
+A_work/build/
+A_work/data/
+*.jou
+*.log
+!A_work/reports/*.log
+.Xil/
+.vivado-ai/
+A_work/dfx_runtime.txt
