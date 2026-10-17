@@ -1,0 +1,60 @@
+{
+  "status": "PROPOSED_ABI_REQUIRES_B_C_REVIEW",
+  "layer": 1,
+  "row_major": true,
+  "endianness": "little",
+  "bias_storage": "signed40 sign-extended into signed64 container",
+  "address_bases": "not assigned; C must use actual platform memory map",
+  "files": {
+    "x": {
+      "filename": "x.bin",
+      "dtype": "<i2",
+      "shape": [
+        99,
+        64
+      ],
+      "bytes": 12672,
+      "sha256": "8d0b28ab9f24761e4bf17d7adca39743f3c009446925e168e5bdb0fdabe417f8"
+    },
+    "w": {
+      "filename": "w.bin",
+      "dtype": "<i2",
+      "shape": [
+        64,
+        256
+      ],
+      "bytes": 32768,
+      "sha256": "77f3db566ad0d903d843738b380b1d5bc197dd496f63eca2759b23ee458c259c"
+    },
+    "b": {
+      "filename": "b.bin",
+      "dtype": "<i8",
+      "shape": [
+        256
+      ],
+      "bytes": 2048,
+      "sha256": "f71633aba17131cb4d84d0241b13ce476fee969e26c1bfc853deb922a0d4bbdd"
+    },
+    "y": {
+      "filename": "y.bin",
+      "dtype": "<i2",
+      "shape": [
+        99,
+        256
+      ],
+      "bytes": 50688,
+      "sha256": "09e038c4da179e88d1c1f0c1af5c7601c317672cd076e4f7d15380ed12f74c0d"
+    }
+  },
+  "numeric_format": {
+    "layer": 1,
+    "fx": 12,
+    "fw": 16,
+    "fy": 12,
+    "shift": 16,
+    "input_absmax_train": 4.65621280670166,
+    "output_absmax_train": 4.996997356414795,
+    "weight_absmax": 0.3442831337451935,
+    "bias_absmax": 0.24315527081489563
+  }
+}

@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Sunuo/Desktop/xinpian/SocDesign-Cop/A_work/rtl/compute/bias_requant.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bias_requant
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Sunuo/Desktop/xinpian/SocDesign-Cop/A_work/rtl/compute/compute_lane.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module compute_lane
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Sunuo/Desktop/xinpian/SocDesign-Cop/A_work/rtl/compute/dot64_mac.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dot64_mac
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Sunuo/Desktop/xinpian/SocDesign-Cop/A_work/tb/tb_a_compute.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_a_compute
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Sunuo/Desktop/xinpian/SocDesign-Cop/A_work/build/xsim_real_v1/a_compute.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

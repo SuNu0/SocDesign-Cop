@@ -1,0 +1,13 @@
+{
+  "commit": "237e4097afd4f6851e0b82f0a8d65c2dfe8eae30",
+  "tensorflow": "2.4.0",
+  "numpy": "1.19.5",
+  "files": {
+    "best_weights.data-00000-of-00001": "ae993f6ed995938c1ab584b0857b35ca18f31f88001c7e17c7d7c3868bd33ad3",
+    "best_weights.index": "5a60a0fa78a1855572084a42669768e2998d37e7d93c833962960fdb0db70fbc"
+  },
+  "labels_sha256": "b8d71f8ce266782ad5c15e5de0df973d62fed80d4e08111c4a080d2d59d8bfaa",
+  "flags_sha256": "fcd480d309f96d2029a3ba764634f9e46dd73b667c0ebb84b66af02680494c58",
+  "original_requested_tensorflow": "2.4.0rc1",
+  "runtime_deviation": "2.4.0 final used; exact rc1 reference parity not claimed"
+}

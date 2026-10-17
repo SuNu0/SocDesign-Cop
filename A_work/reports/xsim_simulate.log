@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+RESET_ABORT_TESTS_PASSED
+DOT64_TESTS_PASSED count=9441
+COMPUTE_LANE_TESTS_PASSED count=9441
+BIAS_REQUANT_TESTS_PASSED count=2769
+PROTOCOL_COVERAGE input_gap_cycles=247303 output_stall_cycles=7152
+ALL_A_COMPUTE_TESTS_PASSED dots=9441 requant=2769
+$finish called at time : 9949038330 ps : File "C:/Users/Sunuo/Desktop/xinpian/SocDesign-Cop/A_work/tb/tb_a_compute.sv" Line 165

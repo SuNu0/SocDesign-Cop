@@ -1,0 +1,179 @@
+2026-10-17 21:17:25.495179: E tensorflow/stream_executor/cuda/cuda_driver.cc:328] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+WARNING:tensorflow:From model\extract_evaluate.py:83: The name tf.keras.backend.set_session is deprecated. Please use tf.compat.v1.keras.backend.set_session instead.
+
+C:\Users\Sunuo\Desktop\xinpian\.venv-a\lib\site-packages\tensorflow\python\autograph\impl\api.py:390: UserWarning: Default value of `approximate` is changed from `True` to `False`
+  return py_builtins.overload_of(f)(*args)
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x00000166F8F3EE50> and <tensorflow_addons.layers.gelu.GELU object at 0x000001661826CE20>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x00000166F89F2340> and <tensorflow_addons.layers.gelu.GELU object at 0x00000166F89F23D0>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x00000166F89F69D0> and <tensorflow_addons.layers.gelu.GELU object at 0x00000166F89F64F0>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x00000167041D9E20> and <tensorflow_addons.layers.gelu.GELU object at 0x00000167041D9A60>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x000001670443ED30> and <tensorflow_addons.layers.gelu.GELU object at 0x000001670443E3D0>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x00000167023A3F40> and <tensorflow_addons.layers.gelu.GELU object at 0x00000167023A3EB0>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x000001670380F0D0> and <tensorflow_addons.layers.gelu.GELU object at 0x000001670380FD00>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x000001670240ECD0> and <tensorflow_addons.layers.gelu.GELU object at 0x0000016618323040>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x0000016702C4B520> and <tensorflow_addons.layers.gelu.GELU object at 0x0000016702C4B430>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x00000167037626A0> and <tensorflow_addons.layers.gelu.GELU object at 0x00000167037625B0>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x000001670373B820> and <tensorflow_addons.layers.gelu.GELU object at 0x000001670373B730>).
+WARNING:tensorflow:Inconsistent references when loading the checkpoint into this object graph. Either the Trackable object references in the Python program have changed in an incompatible way, or the checkpoint was generated in an incompatible program.
+
+Two checkpoint references resolved to different objects (<tensorflow.python.keras.layers.core.Dense object at 0x0000016702B279A0> and <tensorflow_addons.layers.gelu.GELU object at 0x0000016702B278B0>).
+WARNING:tensorflow:From model\extract_evaluate.py:109: The name tf.keras.backend.get_session is deprecated. Please use tf.compat.v1.keras.backend.get_session instead.
+
+CHECKPOINT_ALL_MODEL_WEIGHTS_EXACT count=162
+training 16/192
+training 144/192
+validation 16/4445
+validation 144/4445
+validation 272/4445
+validation 400/4445
+validation 528/4445
+validation 656/4445
+validation 784/4445
+validation 912/4445
+validation 1040/4445
+validation 1168/4445
+validation 1296/4445
+validation 1424/4445
+validation 1552/4445
+validation 1680/4445
+validation 1808/4445
+validation 1936/4445
+validation 2064/4445
+validation 2192/4445
+validation 2320/4445
+validation 2448/4445
+validation 2576/4445
+validation 2704/4445
+validation 2832/4445
+validation 2960/4445
+validation 3088/4445
+validation 3216/4445
+validation 3344/4445
+validation 3472/4445
+validation 3600/4445
+validation 3728/4445
+validation 3856/4445
+validation 3984/4445
+validation 4112/4445
+validation 4240/4445
+validation 4368/4445
+{
+  "validation_samples": 4445,
+  "complete_validation": true,
+  "calibration_samples": 192,
+  "classification_accuracy_observation": 0.978177727784027,
+  "instrumentation_logits_max_abs_diff": 0.0,
+  "max_layer_nrmse": 0.0002757794505043335,
+  "threshold": 0.03,
+  "local_precision_pass": true,
+  "official_600_sample_pass": false,
+  "layers": [
+    {
+      "layer": 0,
+      "nrmse": 0.00013730583229759844,
+      "worst_task_nrmse": 0.00015903103002781017,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 1,
+      "nrmse": 0.00013595351243278397,
+      "worst_task_nrmse": 0.00018471558762633478,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 2,
+      "nrmse": 0.0002757794505043335,
+      "worst_task_nrmse": 0.0003422098000480961,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 3,
+      "nrmse": 0.00016806037294652781,
+      "worst_task_nrmse": 0.000225613062159987,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 4,
+      "nrmse": 0.00019512379428937815,
+      "worst_task_nrmse": 0.00024913345691789324,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 5,
+      "nrmse": 0.000195371770237608,
+      "worst_task_nrmse": 0.0002687952071471002,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 6,
+      "nrmse": 0.0002110691172232659,
+      "worst_task_nrmse": 0.0003200841734101057,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 7,
+      "nrmse": 0.00019616051400774112,
+      "worst_task_nrmse": 0.00023297033693157152,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 8,
+      "nrmse": 0.00019679449194397083,
+      "worst_task_nrmse": 0.0002366277002139348,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 9,
+      "nrmse": 0.00016665455568731603,
+      "worst_task_nrmse": 0.00020372682786499216,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 10,
+      "nrmse": 0.00014743978629808366,
+      "worst_task_nrmse": 0.00017744623904580414,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    },
+    {
+      "layer": 11,
+      "nrmse": 0.00011610199820328281,
+      "worst_task_nrmse": 0.00014074116933371383,
+      "input_clipped_values": 0,
+      "output_saturated_values": 0
+    }
+  ]
+}
+A_REAL_MODEL_EVALUATION_PASSED

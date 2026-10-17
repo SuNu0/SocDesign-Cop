@@ -1,0 +1,5 @@
+# Frozen evidence includes SHA-256 checksums over exact file bytes.
+# Preserve the delivered bytes on Windows and Linux checkouts.
+A_work/** -text whitespace=cr-at-eol
+# Preserve tool-generated report formatting verbatim.
+A_work/reports/** -whitespace
