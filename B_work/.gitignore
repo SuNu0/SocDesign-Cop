@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.vvp
+*.vcd
+*.fst
+reports/
+tools.local.json

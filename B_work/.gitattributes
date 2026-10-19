@@ -1,0 +1,2 @@
+# Preserve exact B delivery bytes for frozen SHA-256 verification.
+* -text whitespace=cr-at-eol
