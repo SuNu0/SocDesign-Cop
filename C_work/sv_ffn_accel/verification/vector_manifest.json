@@ -1,0 +1,115 @@
+{
+  "source": "synthetic_full_size_not_pretrained",
+  "seed": 20261018,
+  "format": "signed16_fractional8_nearest_ties_away_saturate",
+  "X": [
+    99,
+    64
+  ],
+  "W": [
+    64,
+    256
+  ],
+  "Y": [
+    99,
+    256
+  ],
+  "cases": [
+    {
+      "layer": 0,
+      "case": "zero_input_and_bias_broadcast",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -32768,
+      "output_max": 32767
+    },
+    {
+      "layer": 1,
+      "case": "full_width_accumulation_and_saturation",
+      "saturations": 12672,
+      "outputs": 25344,
+      "output_min": -32768,
+      "output_max": 32767
+    },
+    {
+      "layer": 2,
+      "case": "positive_and_negative_half_lsb_ties",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -2,
+      "output_max": 2
+    },
+    {
+      "layer": 3,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1114,
+      "output_max": 1277
+    },
+    {
+      "layer": 4,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1032,
+      "output_max": 1018
+    },
+    {
+      "layer": 5,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1017,
+      "output_max": 989
+    },
+    {
+      "layer": 6,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1017,
+      "output_max": 1154
+    },
+    {
+      "layer": 7,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1016,
+      "output_max": 1058
+    },
+    {
+      "layer": 8,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1112,
+      "output_max": 1066
+    },
+    {
+      "layer": 9,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1125,
+      "output_max": 967
+    },
+    {
+      "layer": 10,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1316,
+      "output_max": 1040
+    },
+    {
+      "layer": 11,
+      "case": "dense_signed_random",
+      "saturations": 0,
+      "outputs": 25344,
+      "output_min": -1107,
+      "output_max": 1156
+    }
+  ]
+}

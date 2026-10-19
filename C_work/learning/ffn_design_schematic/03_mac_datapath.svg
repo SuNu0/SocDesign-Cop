@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1260" viewBox="0 0 1800 1260" role="img" aria-label="计算通路：一条MAC通道如何复制成16路">
+<defs><marker id="arrow-host" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#327d77"/></marker><marker id="arrow-mem" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4678a3"/></marker><marker id="arrow-core" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7766a0"/></marker><marker id="arrow-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ac6837"/></marker><marker id="arrow-plain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#526a62"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Segoe UI",sans-serif;fill:#243d37}.mono{font-family:Consolas,"Cascadia Code",monospace}.wire{fill:none;stroke-linejoin:round;stroke-linecap:round}.block{cursor:pointer}.block:hover .outline{stroke-width:2.5}.focus-dim{opacity:.12}.focus-on .outline{stroke-width:3}.focus-on.wire{stroke-width:3.8}</style>
+<rect width="1800" height="1260" fill="#fafbf8"/>
+<text x="38" y="35" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074" class="mono">FFN_ACCEL  /  RTL LOGICAL SCHEMATIC  /  SHEET 03</text>
+<text x="38" y="77" font-size="29" font-weight="700" text-anchor="start" style="fill:#243d37">计算通路：一条MAC通道如何复制成16路</text>
+<text x="39" y="104" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">同一行i、输出组g：16条通道并行计算j=16g…16g+15；k依次取0…63。</text>
+<g class="block" data-key="x" data-routes="core" data-info="X同步SRAM：x_addr = {row_index, k[5:0]}；每次读出一个signed16的X[i,k]；x_rdata广播到全部16路" tabindex="0" role="button" aria-label="X同步SRAM"><title>X同步SRAM：x_addr = {row_index, k[5:0]}；每次读出一个signed16的X[i,k]；x_rdata广播到全部16路</title>
+<rect class="outline" x="45" y="161" width="300" height="139" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="45" y="174" width="4" height="113" rx="2" fill="#4678a3"/>
+<text x="61" y="189" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">X同步SRAM</text>
+<text x="61" y="213" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">x_addr = {row_index, k[5:0]}</text>
+<text x="61" y="233" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">每次读出一个signed16的X[i,k]</text>
+<text x="61" y="253" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">x_rdata广播到全部16路</text>
+</g>
+<g class="block" data-key="w" data-routes="core" data-info="16个独立W bank：bank=l，l=0…15；w_addr[l] = {k[5:0],group_index}；同时提供W[k,16g]…W[k,16g+15]" tabindex="0" role="button" aria-label="16个独立W bank"><title>16个独立W bank：bank=l，l=0…15；w_addr[l] = {k[5:0],group_index}；同时提供W[k,16g]…W[k,16g+15]</title>
+<rect class="outline" x="435" y="161" width="410" height="139" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="435" y="174" width="4" height="113" rx="2" fill="#4678a3"/>
+<text x="451" y="189" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">16个独立W bank</text>
+<text x="451" y="213" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">bank=l，l=0…15</text>
+<text x="451" y="233" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">w_addr[l] = {k[5:0],group_index}</text>
+<text x="451" y="253" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">同时提供W[k,16g]…W[k,16g+15]</text>
+</g>
+<g class="block" data-key="b" data-routes="core" data-info="偏置同步SRAM：b_addr={group_index,bias_issue[3:0]}；依次读16个偏置，延迟记录lane号；signed16扩到40位，再左移8位" tabindex="0" role="button" aria-label="偏置同步SRAM"><title>偏置同步SRAM：b_addr={group_index,bias_issue[3:0]}；依次读16个偏置，延迟记录lane号；signed16扩到40位，再左移8位</title>
+<rect class="outline" x="935" y="161" width="380" height="139" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="935" y="174" width="4" height="113" rx="2" fill="#4678a3"/>
+<text x="951" y="189" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">偏置同步SRAM</text>
+<text x="951" y="213" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">b_addr={group_index,bias_issue[3:0]}</text>
+<text x="951" y="233" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">依次读16个偏置，延迟记录lane号</text>
+<text x="951" y="253" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">signed16扩到40位，再左移8位</text>
+</g>
+<g class="block" data-key="ctrl" data-routes="core" data-info="核心调度与有效位：mac_read_valid：读数可用；product_valid：乘积可累加；bias_valid：偏置可预置" tabindex="0" role="button" aria-label="核心调度与有效位"><title>核心调度与有效位：mac_read_valid：读数可用；product_valid：乘积可累加；bias_valid：偏置可预置</title>
+<rect class="outline" x="1405" y="161" width="345" height="139" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="1405" y="174" width="4" height="113" rx="2" fill="#ac6837"/>
+<text x="1421" y="189" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">核心调度与有效位</text>
+<text x="1421" y="213" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">mac_read_valid：读数可用</text>
+<text x="1421" y="233" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">product_valid：乘积可累加</text>
+<text x="1421" y="253" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">bias_valid：偏置可预置</text>
+</g>
+<rect x="45" y="357" width="1705" height="480" rx="12" fill="none" stroke="#ccbfdf" stroke-width="1.3" stroke-dasharray="8 5"/>
+<text x="62" y="380" font-size="12" font-weight="600" text-anchor="start" style="fill:#708976">通道l的逻辑展开（l=0…15）；相同结构共16份</text>
+<g class="block" data-key="multiply" data-routes="core" data-info="有符号乘法器：X signed16 × W signed16；32位完整乘积" tabindex="0" role="button" aria-label="有符号乘法器"><title>有符号乘法器：X signed16 × W signed16；32位完整乘积</title>
+<rect class="outline" x="90" y="420" width="235" height="110" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="90" y="433" width="4" height="84" rx="2" fill="#7766a0"/>
+<text x="106" y="448" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">有符号乘法器</text>
+<text x="106" y="472" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">X signed16 × W signed16</text>
+<text x="106" y="492" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">32位完整乘积</text>
+</g>
+<g class="block" data-key="product" data-routes="core" data-info="乘积寄存器：product[l][31:0]；使能：mac_read_valid" tabindex="0" role="button" aria-label="乘积寄存器"><title>乘积寄存器：product[l][31:0]；使能：mac_read_valid</title>
+<rect class="outline" x="395" y="420" width="230" height="110" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="395" y="433" width="4" height="84" rx="2" fill="#7766a0"/>
+<text x="411" y="448" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">乘积寄存器</text>
+<text x="411" y="472" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">product[l][31:0]</text>
+<text x="411" y="492" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">使能：mac_read_valid</text>
+</g>
+<g class="block" data-key="extend" data-routes="core" data-info="符号扩展：32位 → 40位；复制符号位到高8位" tabindex="0" role="button" aria-label="符号扩展"><title>符号扩展：32位 → 40位；复制符号位到高8位</title>
+<rect class="outline" x="695" y="420" width="215" height="110" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="695" y="433" width="4" height="84" rx="2" fill="#7766a0"/>
+<text x="711" y="448" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">符号扩展</text>
+<text x="711" y="472" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">32位 → 40位</text>
+<text x="711" y="492" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">复制符号位到高8位</text>
+</g>
+<g class="block" data-key="adder" data-routes="core" data-info="40位加法器：ACC + product_ext；加法结果保持40位" tabindex="0" role="button" aria-label="40位加法器"><title>40位加法器：ACC + product_ext；加法结果保持40位</title>
+<rect class="outline" x="985" y="420" width="215" height="110" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="985" y="433" width="4" height="84" rx="2" fill="#7766a0"/>
+<text x="1001" y="448" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">40位加法器</text>
+<text x="1001" y="472" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">ACC + product_ext</text>
+<text x="1001" y="492" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">加法结果保持40位</text>
+</g>
+<g class="block" data-key="accmux" data-routes="core" data-info="更新值选择：BIAS：b &lt;&lt; 8；MAC：ACC + product" tabindex="0" role="button" aria-label="更新值选择"><title>更新值选择：BIAS：b &lt;&lt; 8；MAC：ACC + product</title>
+<rect class="outline" x="1275" y="420" width="210" height="110" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1275" y="433" width="4" height="84" rx="2" fill="#7766a0"/>
+<text x="1291" y="448" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">更新值选择</text>
+<text x="1291" y="472" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">BIAS：b &lt;&lt; 8</text>
+<text x="1291" y="492" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">MAC：ACC + product</text>
+</g>
+<g class="block" data-key="acc" data-routes="core" data-info="累加寄存器：ACC[l][39:0]；不更新时保持" tabindex="0" role="button" aria-label="累加寄存器"><title>累加寄存器：ACC[l][39:0]；不更新时保持</title>
+<rect class="outline" x="1540" y="420" width="170" height="110" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1540" y="433" width="4" height="84" rx="2" fill="#7766a0"/>
+<text x="1556" y="448" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">累加寄存器</text>
+<text x="1556" y="472" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">ACC[l][39:0]</text>
+<text x="1556" y="492" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">不更新时保持</text>
+</g>
+<path class="wire" data-routes="core" d="M195,300 L195,420" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="core">
+<text x="250" y="361" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3">X：16 bit</text>
+</g>
+<path class="wire" data-routes="core" d="M640,300 L640,382 L300,382 L300,420" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="core">
+<text x="471" y="372" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3">W[l]：16 bit</text>
+</g>
+<path class="wire" data-routes="core" d="M325,475 L395,475" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="360" y="463" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0" class="mono">32</text>
+</g>
+<path class="wire" data-routes="core" d="M625,475 L695,475" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="660" y="463" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0" class="mono">32</text>
+</g>
+<path class="wire" data-routes="core" d="M910,475 L985,475" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="946" y="463" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0" class="mono">40</text>
+</g>
+<path class="wire" data-routes="core" d="M1200,475 L1275,475" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1238" y="463" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0" class="mono">40</text>
+</g>
+<path class="wire" data-routes="core" d="M1485,475 L1540,475" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1512" y="463" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0" class="mono">40</text>
+</g>
+<path class="wire" data-routes="core" d="M1125,300 L1125,344 L1380,344 L1380,420" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1306" y="333" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3">偏置预置：16位小数尺度</text>
+</g>
+<path class="wire" data-routes="core" d="M1580,300 L1580,324 L510,324 L510,420" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="792" y="313" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">mac_read_valid：乘积寄存器使能</text>
+</g>
+<path class="wire" data-routes="core" d="M1650,300 L1650,367 L1625,367 L1625,420" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1636" y="395" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837" class="mono">bias_valid / product_valid</text>
+</g>
+<path class="wire" data-routes="core" d="M1625,530 L1625,586 L1090,586 L1090,530" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1370" y="576" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0">反馈ACC的上一拍值</text>
+</g>
+<text x="92" y="581" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074">MAC流水线：同步读取 → 注册乘积 → 40位累加。</text>
+<text x="92" y="601" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074">前两拍填充流水线，最后两拍收尾；64项需要66个MAC状态拍。</text>
+<g class="block" data-key="quant" data-routes="core" data-info="requantize(ACC[l])：最接近舍入，半值远离零；舍入后限制到[-32768,32767]；返回{sat_flag, result[15:0]}" tabindex="0" role="button" aria-label="requantize(ACC[l])"><title>requantize(ACC[l])：最接近舍入，半值远离零；舍入后限制到[-32768,32767]；返回{sat_flag, result[15:0]}</title>
+<rect class="outline" x="395" y="651" width="340" height="111" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="395" y="664" width="4" height="85" rx="2" fill="#7766a0"/>
+<text x="411" y="679" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">requantize(ACC[l])</text>
+<text x="411" y="703" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">最接近舍入，半值远离零</text>
+<text x="411" y="723" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">舍入后限制到[-32768,32767]</text>
+<text x="411" y="743" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">返回{sat_flag, result[15:0]}</text>
+</g>
+<g class="block" data-key="output" data-routes="core" data-info="结果寄存器：output_buffer[l][15:0]；S_ROUND时16路同时锁存；共16 × 16 bit" tabindex="0" role="button" aria-label="结果寄存器"><title>结果寄存器：output_buffer[l][15:0]；S_ROUND时16路同时锁存；共16 × 16 bit</title>
+<rect class="outline" x="830" y="651" width="340" height="111" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="830" y="664" width="4" height="85" rx="2" fill="#7766a0"/>
+<text x="846" y="679" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">结果寄存器</text>
+<text x="846" y="703" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">output_buffer[l][15:0]</text>
+<text x="846" y="723" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">S_ROUND时16路同时锁存</text>
+<text x="846" y="743" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">共16 × 16 bit</text>
+</g>
+<path class="wire" data-routes="core" d="M1710,475 L1728,475 L1728,623 L565,623 L565,651" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1240" y="614" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0">最终40位累加值</text>
+</g>
+<path class="wire" data-routes="core" d="M735,707 L830,707" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="782" y="695" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0" class="mono">16 bit</text>
+</g>
+<g class="block" data-key="sat" data-routes="core read" data-info="饱和标记汇总：16路sat_flag求和 → 5位增量；S_ROUND更新32位saturation_count；计数可从SATURATIONS寄存器读取" tabindex="0" role="button" aria-label="饱和标记汇总"><title>饱和标记汇总：16路sat_flag求和 → 5位增量；S_ROUND更新32位saturation_count；计数可从SATURATIONS寄存器读取</title>
+<rect class="outline" x="1275" y="651" width="435" height="111" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="1275" y="664" width="4" height="85" rx="2" fill="#ac6837"/>
+<text x="1291" y="679" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">饱和标记汇总</text>
+<text x="1291" y="703" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16路sat_flag求和 → 5位增量</text>
+<text x="1291" y="723" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">S_ROUND更新32位saturation_count</text>
+<text x="1291" y="743" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">计数可从SATURATIONS寄存器读取</text>
+</g>
+<path class="wire" data-routes="core" d="M735,747 L790,747 L790,790 L1230,790 L1230,707 L1275,707" stroke="#ac6837" stroke-width="1.8" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1064" y="780" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">sat_flag：每路1 bit，共16路</text>
+</g>
+<g class="block" data-key="buffers" data-routes="core" data-info="output_buffer整体视图：buffer[0] … buffer[15]；与上方单路结果寄存器为同一组；这里展开16路，不增加寄存器" tabindex="0" role="button" aria-label="output_buffer整体视图"><title>output_buffer整体视图：buffer[0] … buffer[15]；与上方单路结果寄存器为同一组；这里展开16路，不增加寄存器</title>
+<rect class="outline" x="100" y="912" width="350" height="125" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="100" y="925" width="4" height="99" rx="2" fill="#7766a0"/>
+<text x="116" y="940" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">output_buffer整体视图</text>
+<text x="116" y="964" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">buffer[0] … buffer[15]</text>
+<text x="116" y="984" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">与上方单路结果寄存器为同一组</text>
+<text x="116" y="1004" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">这里展开16路，不增加寄存器</text>
+</g>
+<g class="block" data-key="write_mux" data-routes="core" data-info="16选1输出MUX：选择信号：write_lane[3:0]；y_wdata=output_buffer[write_lane]；每拍只选择一个16位结果" tabindex="0" role="button" aria-label="16选1输出MUX"><title>16选1输出MUX：选择信号：write_lane[3:0]；y_wdata=output_buffer[write_lane]；每拍只选择一个16位结果</title>
+<rect class="outline" x="605" y="912" width="350" height="125" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="605" y="925" width="4" height="99" rx="2" fill="#7766a0"/>
+<text x="621" y="940" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">16选1输出MUX</text>
+<text x="621" y="964" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">选择信号：write_lane[3:0]</text>
+<text x="621" y="984" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">y_wdata=output_buffer[write_lane]</text>
+<text x="621" y="1004" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">每拍只选择一个16位结果</text>
+</g>
+<g class="block" data-key="y" data-routes="core" data-info="Y单端口SRAM写回：y_addr[14:0] = {row_index,group_index,write_lane}；S_WRITE：y_en=1 / y_we=1；write_lane=0…15，共16拍；完成后换组或置DONE" tabindex="0" role="button" aria-label="Y单端口SRAM写回"><title>Y单端口SRAM写回：y_addr[14:0] = {row_index,group_index,write_lane}；S_WRITE：y_en=1 / y_we=1；write_lane=0…15，共16拍；完成后换组或置DONE</title>
+<rect class="outline" x="1110" y="912" width="590" height="125" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="1110" y="925" width="4" height="99" rx="2" fill="#4678a3"/>
+<text x="1126" y="940" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">Y单端口SRAM写回</text>
+<text x="1126" y="964" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">y_addr[14:0] = {row_index,group_index,write_lane}</text>
+<text x="1126" y="984" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">S_WRITE：y_en=1 / y_we=1</text>
+<text x="1126" y="1004" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">write_lane=0…15，共16拍；完成后换组或置DONE</text>
+</g>
+<path class="wire" data-routes="core" d="M1000,762 L1000,864 L275,864 L275,912" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="624" y="854" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0">展开同一组16路结果寄存器</text>
+</g>
+<path class="wire" data-routes="core" d="M450,975 L605,975" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="528" y="962" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0">16 × 16 bit</text>
+</g>
+<path class="wire" data-routes="core" d="M955,975 L1110,975" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1034" y="962" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0">16 bit / 拍</text>
+</g>
+<text x="45" y="1090" font-size="14" font-weight="400" text-anchor="start" style="fill:#6b8074">数值尺度：X、W、b、Y为8位小数。乘积有16位小数；偏置左移8位与其对齐；完整点积结束后只舍入一次。</text>
+<text x="45" y="1110" font-size="14" font-weight="400" text-anchor="start" style="fill:#6b8074">每组：17拍偏置 + 66拍MAC + 1拍舍入 + 16拍写回 = 100拍。16组/行 × 99行 = 158400拍。</text>
+<line x1="38" x2="1762" y1="1204" y2="1204" stroke="#dce5d8"/>
+<text x="39" y="1230" font-size="11" font-weight="400" text-anchor="start" style="fill:#728675">更新值选择是RTL行为的逻辑表示，实际门级结构由综合决定。上图用一条通道展开；硬件共16条。</text>
+<text x="1760" y="1230" font-size="11" font-weight="400" text-anchor="end" style="fill:#728675" class="mono">99 × 64 · 64 × 256 → 99 × 256</text>
+</svg>

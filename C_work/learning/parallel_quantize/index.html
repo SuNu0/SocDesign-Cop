@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>把代码变成电路 · 并行量化小课堂</title>
+<style>
+:root{--paper:#f5f4ef;--white:#fff;--ink:#203b3b;--muted:#677975;--line:#dce3da;--green:#216b56;--mint:#e7f0e7;--lime:#d6ee9a;--orange:#bd5736;--peach:#fff0e6;--mono:Consolas,"Courier New",monospace;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.7 "Segoe UI","Microsoft YaHei",sans-serif}button,input,select{font:inherit}button,select{cursor:pointer}button{color:inherit}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #408eab;outline-offset:3px}button:disabled{cursor:default;opacity:.4}button{touch-action:manipulation}code,.mono{font-family:var(--mono)}code{font-size:.9em}button{border:1px solid var(--line);border-radius:10px;background:white;padding:8px 13px;transition:background .2s,transform .2s}button:hover:not(:disabled){background:var(--mint)}button:active:not(:disabled){transform:translateY(1px)}.shell{max-width:1560px;margin:auto;display:grid;grid-template-columns:228px minmax(0,1fr);min-height:100vh}.sidebar{padding:32px 23px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:750;letter-spacing:.04em}.brand-icon{width:34px;height:34px;background:var(--green);color:var(--lime);display:grid;place-items:center;border-radius:10px;font-size:22px}.eyebrow{font-size:11px;letter-spacing:.14em;font-weight:700;text-transform:uppercase;color:var(--muted)}.sidebar-intro{font-size:13px;color:var(--muted);margin:7px 0 0}.chapters{display:flex;flex-direction:column;gap:9px}.chapter{display:flex;gap:11px;text-align:left;background:transparent;padding:12px 9px;border:1px solid transparent;align-items:center}.chapter.active{background:var(--mint);border-color:#cddfcb}.chapter .num{width:28px;height:28px;border:1px solid #ced8cc;border-radius:50%;display:grid;place-items:center;font:12px var(--mono);flex-shrink:0}.chapter.active .num{background:var(--green);border-color:var(--green);color:white}.chapter strong{display:block;font-size:14px}.chapter small{display:block;font-size:11px;color:var(--muted)}.side-note{margin-top:auto;border-top:1px solid var(--line);padding-top:19px;font-size:12px;color:var(--muted)}.side-note b{color:var(--green);font-family:var(--mono);font-size:26px;display:block}.main{padding:30px 36px 26px;min-width:0}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #cbdac7;border-radius:99px;padding:4px 10px;font-size:11px;color:var(--green);white-space:nowrap}.dot{width:6px;height:6px;border-radius:50%;background:var(--green)}h1{font-size:clamp(27px,3vw,42px);line-height:1.3;letter-spacing:-.04em;margin:19px 0 9px;font-weight:750}.lead{color:var(--muted);margin:0 0 23px;font-size:14px}.hero-word{color:var(--green)}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}.canvas{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;min-width:0}.canvas-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.canvas-head strong{font-size:14px}.canvas-head small{display:block;font-size:11px;color:var(--muted)}.canvas-head select{border:1px solid var(--line);border-radius:8px;background:var(--paper);font-size:11px;padding:6px;max-width:150px}.stage{padding:23px 24px;min-height:450px;background-image:radial-gradient(#d9e0d5 .7px,transparent .7px);background-size:17px 17px;position:relative;overflow:hidden}.stage h2{font-size:22px;line-height:1.45;margin:0 0 8px}.desc{font-size:13px;color:var(--muted);margin:0 0 20px}.takeaway{margin:0;padding:15px 22px;border-top:1px solid var(--line);background:#f1f6ec;font-size:13px;min-height:75px}.takeaway b{color:var(--green)}.code-panel{background:#1f3534;color:#d8e7df;border-radius:var(--radius);overflow:hidden}.code-head{padding:15px 18px;border-bottom:1px solid #ffffff16;display:flex;justify-content:space-between;font-size:12px}.code-head span{color:#a2b9ac}.code-lines{padding:12px 0;overflow-x:auto;margin:0;font:11px/1.85 var(--mono);tab-size:2}.code-line{display:block;padding:1px 14px 1px 8px;min-width:max-content;border-left:3px solid transparent}.code-line .ln{display:inline-block;width:23px;color:#7f9b8f;user-select:none}.code-line.selected{background:#a3ce8021;border-left-color:var(--lime);color:#e7f7c9}.code-line.faint{opacity:.48}.code-foot{padding:11px 17px;color:#a7bcb1;font-size:11px;border-top:1px solid #ffffff16}.explain-card{padding:18px 19px;background:#eeeede;border:1px solid #dedfcb;border-radius:var(--radius);margin-top:16px}.explain-card h3{font-size:13px;margin:0 0 7px}.explain-card p{font-size:12px;color:#58685b;margin:0;line-height:1.95}.toolbar{margin-top:19px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.primary{background:var(--green);color:white;border-color:var(--green);font-weight:650;min-width:126px}.primary:hover:not(:disabled){background:#155641}.toolbar select{border:1px solid var(--line);border-radius:8px;padding:7px;background:transparent;font-size:12px}.toolbar .spacer{flex:1}.progress-track{height:3px;background:#dde4d8;margin-top:17px;border-radius:9px;overflow:hidden}.progress-fill{height:100%;background:var(--green);width:0;transition:width .3s}.footer{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--muted);margin-top:13px}.small-note{font-size:11px;color:var(--muted);margin:12px 0 0}.chip{display:inline-block;padding:3px 9px;border-radius:6px;background:var(--mint);color:var(--green);font:11px/1.6 var(--mono)}.lesson-enter{animation:enter .35s ease both}@keyframes enter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.box{background:white;border:1px solid var(--line);border-radius:12px;padding:16px}.bit-row{display:flex;gap:7px;margin:14px 0}.bit-col{flex:1;text-align:center;min-width:0}.bit-col small{display:block;font:10px var(--mono);color:var(--muted);margin-bottom:6px}.bit{display:grid;place-items:center;width:100%;height:52px;padding:0;border-radius:9px;font:24px var(--mono);background:#f0f2ec;border:1px solid #dce1d3;transition:all .25s}.bit.on{background:var(--green);border-color:var(--green);color:white}.bit.lit{box-shadow:0 0 0 3px #d6ee9a}.bit-col em{display:block;font:10px var(--mono);color:var(--muted);margin-top:6px}.number-control{display:flex;align-items:center;gap:15px;margin-top:15px}.number-control input[type=range]{accent-color:var(--green);width:100%;min-width:60px}.number-display{font:38px/1 var(--mono);color:var(--green);min-width:74px}.formula{background:#f3f5ef;padding:10px 13px;border-radius:9px;font:13px/1.8 var(--mono);overflow-wrap:anywhere}.subheading{font-size:11px;color:var(--muted);margin:0 0 8px}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.mini-grid .box{padding:12px}.mini-grid strong{font:16px var(--mono);color:var(--green);display:block}.mini-grid span{font-size:11px;color:var(--muted)}.inline-buttons{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.inline-buttons button{font-size:11px;padding:5px 10px}.array-header,.array-row{display:grid;grid-template-columns:40px repeat(4,minmax(0,1fr));gap:7px;align-items:stretch}.array-header{font:10px/1.5 var(--mono);color:var(--muted);margin-bottom:10px;text-align:center}.array-row{margin-bottom:9px}.lane-label{display:flex;align-items:center;justify-content:center;font:11px var(--mono);color:var(--muted)}.array-cell{background:#edf2e9;border:1px solid #d9e4d3;padding:12px 4px;border-radius:9px;text-align:center;font:12px var(--mono);min-width:0;transition:all .3s}.array-cell.sel{background:var(--green);color:white;border-color:var(--green)}.array-cell small{display:block;font:9px/1.5 var(--mono);color:inherit;opacity:.7;margin-top:5px}.array-row.active .lane-label{color:var(--green);font-weight:bold}.array-bottom{margin-top:18px;display:flex;gap:8px;align-items:center;justify-content:center;font-size:12px}.flow-head,.flow-row{display:grid;grid-template-columns:29px minmax(0,1fr) 27px minmax(0,1fr) 27px minmax(0,1fr);gap:5px;align-items:center}.flow-head{font:10px var(--mono);color:var(--muted);text-align:center;margin:17px 0 12px}.flow-row{margin-bottom:12px}.flow-cell{border:1px solid var(--line);background:white;border-radius:10px;padding:10px 5px;min-width:0;text-align:center;font:12px var(--mono);position:relative}.flow-cell small{display:block;font:9px/1.7 var(--mono);color:var(--muted);margin-top:5px}.flow-cell.quantizer{background:var(--mint);border-color:#c6d9bd;color:var(--green);font-size:10px}.flow-cell.result.sat{background:var(--peach);border-color:#efc7b4;color:var(--orange)}.arrow{color:#a6b8a2;text-align:center;font-size:19px}.parallel-active .arrow{color:var(--green);animation:travel .9s ease-in-out infinite}.parallel-active .quantizer{animation:glow 1.8s ease-in-out infinite}@keyframes travel{50%{transform:translateX(4px)}}@keyframes glow{50%{box-shadow:0 0 0 3px #d6ee9a88}}.lane-picker{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:17px}.lane-picker button{font:11px var(--mono);padding:5px 9px}.lane-picker button.active{background:var(--green);color:white;border-color:var(--green)}.input-label{font-size:12px;display:block}.acc-input{display:flex;gap:9px;margin:8px 0 6px}.acc-input input{min-width:0;width:100%;padding:10px 12px;border:1px solid #bccdb7;border-radius:9px;background:#fff;font:19px var(--mono);color:var(--ink)}.acc-input button{font-size:12px}.validation{font-size:11px;min-height:19px;color:var(--orange)}.quant-equation{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 16px;padding:12px;background:#f0f4eb;border-radius:11px;font-size:12px}.quant-equation strong{font:24px var(--mono);color:var(--green)}.quant-equation.sat{background:var(--peach)}.quant-equation.sat strong{color:var(--orange)}.word17{display:grid;grid-template-columns:32px 13px repeat(16,minmax(0,1fr));gap:3px;align-items:center;margin:20px 0 8px}.tiny-bit{font:12px var(--mono);text-align:center;padding:10px 0;border-radius:4px;background:#edf2e8;color:var(--green);border:1px solid #dbe5d3}.tiny-bit.flag{background:var(--peach);color:var(--orange);border-color:#edc8b7}.tiny-bit.sign{box-shadow:inset 0 -3px 0 #9caed2}.word-labels{display:flex;gap:13px;font-size:10px;color:var(--muted);margin-bottom:16px}.word-labels span:first-child{color:var(--orange);max-width:65px}.word-labels span:last-child{flex:1;text-align:center}.answer-note{font-size:12px;padding:12px 14px;border-left:3px solid var(--green);background:#f4f6ef}.answer-note.sat{border-color:var(--orange);background:var(--peach)}.flag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 16px}.flag-card{border:1px solid #d3dfca;background:#f1f5ec;border-radius:12px;padding:11px;text-align:center;transition:opacity .3s,transform .3s}.flag-card.sat{border-color:#edc4ad;background:var(--peach)}.flag-card.dimmed{opacity:.3;transform:translateY(5px)}.flag-card small{display:block;font:10px var(--mono);color:var(--muted)}.flag-card b{font:32px var(--mono);color:var(--green);display:block;margin:5px 0}.flag-card.sat b{color:var(--orange)}.flag-card code{font-size:10px}.sum-line{font:17px/2 var(--mono);text-align:center;overflow-wrap:anywhere}.sum-line .sat{color:var(--orange)}.count-result{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:18px;padding:17px;background:var(--green);color:white;border-radius:13px}.count-result strong{font:48px/1 var(--mono);color:var(--lime)}.count-result small{display:block;font:11px var(--mono);opacity:.7}.count-result p{margin:0;font-size:13px}.concat{display:flex;justify-content:center;gap:5px;margin:15px 0;font:19px var(--mono)}.concat span{padding:8px;background:#eaf0e3;border-radius:6px}.concat .last{background:var(--peach);color:var(--orange)}.step-indicator{font-size:11px;color:var(--muted);text-align:center;margin:9px 0}.control-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.control-tabs button{font-size:11px;padding:6px 9px}.control-tabs button.active{background:var(--green);color:white}.control-data{display:grid;grid-template-columns:1fr 1fr;gap:9px}.control-data .box{padding:12px}.control-data code{font-size:11px;color:var(--green)}.control-data strong{display:block;font-size:13px;margin:4px 0}.control-data p{font-size:11px;color:var(--muted);margin:0}.signal-pipe{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr;align-items:center;margin:18px 0;gap:2px}.signal-box{padding:13px 7px;text-align:center;border:1px solid var(--line);background:white;border-radius:10px;font-size:12px}.signal-box b{display:block;font:10px var(--mono);margin-top:5px;color:var(--muted)}.signal-box.live{background:var(--mint);border-color:#a8c294}.signal-box.live b{color:var(--green)}.reading{margin-top:20px;border:1px solid var(--line);border-radius:12px;background:#ffffff80;padding:13px 17px}.reading summary{cursor:pointer;font-size:12px;font-weight:650}.reading p,.reading li{font-size:12px;color:var(--muted)}.reading ul{padding-left:20px}.source{font-family:var(--mono);font-size:11px;word-break:break-all;color:var(--green)}.dense .flow-row{margin-bottom:6px}.dense .flow-cell{padding:5px;font-size:10px}.dense .flow-cell small{display:none}.dense .array-row{margin-bottom:5px}.dense .array-cell{padding:6px 3px;font-size:10px}.dense .array-cell small{display:none}.dense .flag-grid{grid-template-columns:repeat(8,1fr);gap:6px}.dense .flag-card{padding:7px 3px}.dense .flag-card b{font-size:24px}.dense .flag-card code{font-size:8px}.kbd{border:1px solid var(--line);border-radius:4px;padding:0 4px;font:10px var(--mono)}
+.sidebar,.workspace>aside{min-width:0}
+[hidden]{display:none!important}.mode-bar{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin:-5px 0 20px}.mode-switch{display:flex;padding:4px;background:#e7eade;border:1px solid #d6dece;border-radius:12px;gap:4px}.mode-switch button{border:0;background:transparent;font-size:13px;padding:8px 17px}.mode-switch button.active{background:var(--green);color:white}.mode-bar>span{font-size:12px;color:var(--muted)}.manual-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}.manual-meta .chip{font-family:inherit}.manual-meta button{font-size:11px;padding:4px 9px}.manual-top{margin-bottom:15px;padding:12px;background:#f4f6ee;border:1px solid var(--line);border-radius:11px}.manual-top label{font-size:12px;display:block}.manual-top .acc-input{margin:6px 0 0}.manual-top .acc-input input{font-size:16px;padding:8px 10px}.manual-presets{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 4px}.manual-presets button{font-size:11px;padding:5px 9px}.manual-lanes button{position:relative}.manual-lanes button.done::after{content:' ✓';color:var(--green)}.manual-lanes button.active.done::after{color:var(--lime)}.manual-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:16px 0}.manual-steps button{text-align:left;padding:8px 9px;font-size:11px;background:#f8faf4;min-width:0}.manual-steps button.active{border-color:var(--green);background:var(--mint);color:var(--green);font-weight:700}.manual-steps button.done{border-bottom:3px solid #87a96f}.manual-steps .step-number{font:10px var(--mono);margin-right:5px;opacity:.7}.manual-question{padding:19px;border:1px solid #cbdac2;background:white;border-radius:13px}.manual-question h3{font-size:18px;line-height:1.5;margin:0 0 7px}.manual-question .desc{margin:0 0 13px}.manual-given{padding:10px 12px;border-radius:8px;background:#f2f5ec;font:14px/1.8 var(--mono);overflow-wrap:anywhere;margin-bottom:13px}.manual-question label{display:block;font-size:12px;margin:5px 0}.manual-answer-row{display:flex;gap:8px;align-items:center}.manual-answer-row input{width:100%;min-width:0;border:1px solid #adbea5;background:#fbfcf8;border-radius:8px;padding:11px 12px;font:18px var(--mono);color:var(--ink)}.manual-answer-row input.binary-answer{font-size:14px;letter-spacing:.03em}.manual-question input[aria-invalid=true]{border-color:var(--orange);background:#fff8f2}.manual-actions{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 0}.manual-actions button{font-size:12px;padding:7px 11px}.manual-actions .primary{min-width:100px}.manual-feedback{margin-top:13px;font-size:12px;min-height:24px;color:var(--muted)}.manual-feedback.good{color:var(--green)}.manual-feedback.bad{color:var(--orange)}.manual-hint,.manual-solution{padding:13px 14px;margin-top:12px;font-size:12px;border-radius:9px;overflow-wrap:anywhere}.manual-hint{background:#f4f1df;border:1px solid #e7dfb8;color:#726636}.manual-solution{background:var(--mint);border:1px solid #c8dabc}.manual-solution h4{font-size:12px;margin:0 0 8px}.manual-solution p{margin:6px 0}.manual-solution .mono{font-size:12px;line-height:1.9}.manual-nav{display:flex;gap:8px;justify-content:space-between;margin-top:16px}.manual-nav button{font-size:12px}.manual-summary{margin-top:20px;border:1px solid var(--line);border-radius:11px;background:white;overflow:hidden}.manual-summary summary{font-size:12px;font-weight:650;padding:11px 13px;cursor:pointer;background:#f6f8f1}.manual-table-wrap{overflow-x:auto}.manual-table{border-collapse:collapse;width:100%;font-size:11px;text-align:left;white-space:nowrap}.manual-table th,.manual-table td{padding:9px 11px;border-top:1px solid var(--line)}.manual-table th{font-weight:600;color:var(--muted);font-size:10px}.manual-table td{font-family:var(--mono)}.manual-table button{padding:2px 6px;font:11px var(--mono)}.manual-status{font:10px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;color:var(--muted);display:block}.manual-status.ok{color:var(--green)}.manual-status.wrong{color:var(--orange)}.manual-notice{font-size:11px;color:var(--green);margin:9px 0}.manual-guide{font-size:12px;color:var(--muted);padding:10px 0 0}.manual-tally{font-size:12px;line-height:1.9;background:#f4f6ed;border-radius:9px;padding:12px;overflow-wrap:anywhere}.manual-complete{background:var(--green);color:white;padding:15px;border-radius:11px;margin-top:13px;font-size:13px}.manual-complete b{color:var(--lime)}
+.manual-top .acc-input button{white-space:nowrap;flex-shrink:0}
+@media(max-width:740px){.mode-bar>span{font-size:11px}.manual-question{padding:15px 12px}.manual-steps{gap:5px}.manual-steps button{padding:7px 6px;font-size:10px}.manual-answer-row input{font-size:16px}.manual-answer-row input.binary-answer{font-size:12px}.manual-actions button{font-size:11px;padding:7px 9px}.manual-top .acc-input{flex-wrap:wrap}.manual-top .acc-input input{flex:1 1 170px}.manual-meta{font-size:11px}.manual-tally{font-size:11px}.manual-solution .mono{font-size:11px}}
+@media(min-width:1400px){.workspace{grid-template-columns:minmax(0,1fr) 355px}.stage{min-height:470px}.code-lines{font-size:12px}}
+@media(max-width:1150px){.shell{grid-template-columns:190px minmax(0,1fr)}.sidebar{padding:25px 14px}.main{padding:25px 23px}.workspace{grid-template-columns:minmax(0,1fr) 285px}.stage{padding:20px 17px}.code-lines{font-size:10px}.brand{font-size:15px}.flow-cell{font-size:10px}.word17{gap:2px;grid-template-columns:28px 7px repeat(16,minmax(0,1fr))}.tiny-bit{font-size:10px}}
+@media(max-width:960px){.shell{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:15px 22px;gap:13px}.sidebar>div:nth-child(2),.side-note{display:none}.chapters{flex-direction:row;overflow-x:auto;gap:5px}.chapter{padding:7px;flex-shrink:0;gap:6px}.chapter small{display:none}.chapter strong{font-size:12px}.chapter .num{width:23px;height:23px}.main{padding:22px}.workspace{grid-template-columns:minmax(0,1fr) 300px}.stage{min-height:420px}}
+@media(max-width:740px){.workspace{grid-template-columns:minmax(0,1fr)}.main{padding:19px 14px}.topline .eyebrow{font-size:9px}.topline .pill{font-size:9px}.stage{padding:21px 16px;min-height:400px}.code-lines{font-size:11px}.code-panel{max-height:290px;overflow:auto}.explain-card{margin-top:10px}.footer{flex-direction:column;gap:3px}.toolbar{gap:7px}.toolbar button{padding:8px 10px;font-size:12px}.toolbar .primary{min-width:110px}.toolbar .spacer{display:none}.array-header{font-size:8px}.array-cell{font-size:10px}.flow-head{font-size:8px}.flow-cell{font-size:10px}.flow-cell.quantizer{font-size:8px}.flow-cell small{font-size:8px}.tiny-bit{font-size:10px}.mini-grid strong{font-size:13px}.mini-grid .box{padding:9px}.bit{height:45px}.dense .flag-grid{grid-template-columns:repeat(4,1fr)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">▦</span> 芯片小课堂</div>
+    <div><div class="eyebrow">A small guide to RTL</div><p class="sidebar-intro">把抽象的代码，<br>变成看得见的电路。</p></div>
+    <nav class="chapters" id="chapters" aria-label="课程章节"></nav>
+    <div class="side-note">来自你的 FFN 加速器<b>16 LANES</b>真实工程为 16 通道。<br>先用 4 通道看清原理，再切换查看完整阵列。</div>
+  </aside>
+  <main class="main">
+    <div class="topline"><span class="eyebrow">Learning lab / 组合逻辑与并行计算</span><span class="pill"><i class="dot"></i> 可交互 · 可离线打开</span></div>
+    <h1>让这段代码，<span class="hero-word">动起来。</span></h1>
+    <p class="lead">从一个二进制小格子开始，看懂多通道计算怎样得到结果和饱和次数。</p>
+    <div class="mode-bar"><div class="mode-switch" role="group" aria-label="学习模式"><button id="animationMode" class="active" aria-pressed="true">▶ 动画讲解</button><button id="manualMode" aria-pressed="false">✎ 手算模式</button></div><span id="modeHint">先看动画，再亲手算一遍。</span></div>
+    <div class="workspace">
+      <section class="canvas" aria-label="交互动画">
+        <div class="canvas-head"><div><strong id="stageLabel"></strong><small id="stageSubtitle"></small></div><label><span class="eyebrow" style="margin-right:5px">视图</span><select id="laneCount" aria-label="演示通道数量"><option value="4">4 通道 · 入门</option><option value="16">16 通道 · 工程</option></select></label></div>
+        <div class="stage" id="stage"></div>
+        <p class="takeaway" id="takeaway" aria-live="polite"></p>
+      </section>
+      <aside>
+        <section class="code-panel" aria-label="对应源代码"><div class="code-head"><strong>对照你的代码</strong><span>SystemVerilog</span></div><pre class="code-lines" id="code"></pre><div class="code-foot" id="codeFoot"></div></section>
+        <section class="explain-card"><h3 id="explainTitle"></h3><p id="explainText"></p></section>
+      </aside>
+    </div>
+    <div class="toolbar" id="animationToolbar"><button class="primary" id="play">▶ 播放讲解</button><button id="prev">← 上一步</button><button id="next">下一步 →</button><span class="spacer"></span><label style="font-size:11px;color:var(--muted)">速度 <select id="speed" aria-label="播放速度"><option value="1.6">慢速</option><option value="1" selected>正常</option><option value="0.55">快速</option></select></label><button id="reset" aria-label="重新开始全部课程">↺ 重来</button></div>
+    <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress"></div></div>
+    <div class="footer"><span id="progressText" aria-live="polite"></span><span id="keyboardHint"><span class="kbd">←</span> <span class="kbd">→</span> 切换章节 · <span class="kbd">空格</span> 播放 / 暂停</span></div>
+    <details class="reading"><summary>动画与真实硬件的对应关系 / 代码来源</summary><p>页面默认暂停，可自由点击章节，也可播放完整讲解。4 通道视图是为教学缩小的例子；工程参数为 LANES=16。示例数字是可修改的教学输入，不是仿真抓取的数据。</p><ul><li>量化规则来自项目函数：对累加器原始整数除以 256，就近取整，正负半值都向远离零的方向舍入，再限制到 −32768～32767。这些数字是定点数据的整数编码；输出所表示的实数还要除以 256。</li><li>动画中的流动、高亮和逐项计数是阅读顺序，不是硬件时钟周期。generate 会展开硬件；always @* 中的 for 描述组合求和，不会自动变成每拍加一个的计数器。组合逻辑仍有实际传播延迟。</li><li>product → accumulator → output_buffer 的寄存、偏置加载、valid/last 的传递，来自模块后面的 always_ff；用户贴出的声明本身不执行这些动作。</li><li>saturation_increment 是当前一组的饱和数量。工程只在 S_ROUND 时把它加到 saturation_count，并把低 16 位保存到 output_buffer。</li></ul><p>源文件：<span class="source">sv_ffn_accel/rtl/ffn_accel.sv:88–105、235–268</span><br>量化函数：<span class="source">sv_ffn_accel/rtl/ffn_numeric_pkg.sv:11–29</span><br>本页没有网络请求、外部字体或第三方依赖。</p></details>
+  </main>
+</div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Number(n).toLocaleString('en-US');
+const original=[3160384,10240000,-10240000,-3200,25600,0,8388480,-8388736,768,128,-128,51200,8960000,-8960000,65536,-65536];
+const state={mode:'animation',step:0,beat:0,playing:false,timer:null,lanes:4,selected:0,row:37,values:[...original],controls:'index',finished:false};
+const source=[
+'logic [6:0] row_index;',
+'logic [3:0] group_index, write_lane, bias_lane_d;',
+'logic [4:0] bias_issue;',
+'logic [6:0] mac_issue;',
+'logic bias_valid, mac_read_valid, mac_read_last,',
+'      product_valid, product_last;',
+'logic signed [31:0] product [0:LANES-1];',
+'logic signed [39:0] accumulator [0:LANES-1];',
+'logic [15:0] output_buffer [0:LANES-1];',
+'wire [16:0] quantized [0:LANES-1];',
+'logic [4:0] saturation_increment;',
+'for (genvar q=0;q<LANES;q=q+1) begin: gen_quantize',
+'  assign quantized[q]=requantize(accumulator[q]);',
+'end',
+'always @* begin',
+'  saturation_increment=0;',
+'  for (integer s=0;s<LANES;s=s+1)',
+'    saturation_increment=saturation_increment',
+"                         +{4'd0,quantized[s][16]};",
+'end'];
+const lessons=[
+ {title:'一格，是一个 bit',short:'位宽与数字',sub:'[6:0] 为什么是 7 位？',lines:[0],duration:9,foot:'先看懂一个变量，再看懂一排变量。',take:'<b>[6:0] = 从第 6 位到第 0 位，共 7 位。</b>没有 signed 时，这个变量能表示 0～127。',tip:'位宽 ≠ 使用范围',explain:'row_index 能表示 0～127，但本工程只处理 99 行，所以实际行号用 0～98。位宽告诉你“装得下多少”，控制逻辑决定“实际用多少”。'},
+ {title:'一条通道，一套数据',short:'数组与通道',sub:'[39:0] 和 [0:LANES-1] 分别管什么？',lines:[6,7,8,9],duration:9,foot:'点击任意格子，查看属于同一通道的整行数据。',take:'<b>前面的括号管“每份多宽”，后面的括号管“有几份”。</b>每条 lane 都有自己的乘积、累加结果、量化结果和输出缓冲。',tip:'logic 会自动变成寄存器吗？',explain:'logic 是数据类型。是否需要存储、何时更新，要看赋值方式。本工程在 always_ff 中更新 product、accumulator 和 output_buffer；quantized 由 assign 连续驱动。'},
+ {title:'同时工作的量化器',short:'generate 并行',sub:'for 在这里是在“展开硬件”',lines:[11,12,13],duration:10,foot:'q 是展开硬件时使用的编号，不是运行时的计数器。',take:'<b>每条通道都有一份 requantize 逻辑，各通道并行工作。</b>输入变化后，对应输出经组合逻辑传播延迟跟着变化，无需等另一条通道算完。',tip:'量化函数具体做什么？',explain:'项目里的 requantize 把 40 位累加器原始整数除以 256，按就近取整、半值远离零的规则舍入，再夹到 16 位有符号范围。超出范围时，把第 16 位设为 1。'},
+ {title:'17 位里，藏着两个信息',short:'结果与饱和',sub:'1 位状态 + 16 位数据',lines:[7,9,12,18],duration:11,foot:'bit16 是饱和标志；低 16 位按有符号补码解释。',take:'<b>quantized[q][16] 回答“超范围了吗”，[15:0] 保存结果。</b>负数不一定发生饱和：负号看 bit15，饱和看 bit16。',tip:'“饱和”可以想成限高器',explain:'结果超过 32767，就保留 32767；低于 −32768，就保留 −32768。它不会让越界结果绕回另一端。17 位组合中，bit16 是状态位，不是整个结果的符号位。'},
+ {title:'把所有“超范围”加起来',short:'组合逻辑求和',sub:"{4'd0, flag} 就是把 0/1 补成 5 位",lines:[10,14,15,16,17,18,19],duration:11,foot:'逐项高亮只是帮助阅读；这里没有时钟，不是每拍加一次。',take:'<b>saturation_increment = 当前所有通道饱和标志之和。</b>每次重新求值先从 0 开始，因此它表示这一组有几个饱和，不是历史累计次数。',tip:'为什么需要 5 位？',explain:'工程有 16 个通道，饱和数可能是 0～16。4 位最多只能装 15，因此用 5 位。always @* 和其中的 for 描述组合求和，综合后的加法器结构由工具决定。'},
+ {title:'谁负责位置，谁负责有效',short:'控制信号全景',sub:'给数据配上编号和有效标志',lines:[0,1,2,3,4,5],duration:12,foot:'这些是控制信号的声明；具体赋值和状态迁移在后面的 always_ff。',take:'<b>索引告诉电路“处理哪里”，valid 告诉它“数据能不能用”，last 告诉它“是否最后一项”。</b>它们让并行数据和流水线阶段保持对应。',tip:'最后，把整段连起来',explain:'声明准备数据与控制信号 → 多份量化逻辑并行计算 → 拆出数据与饱和标志 → 组合求和得到当前组的饱和数。后面的 S_ROUND 状态才会保存输出，并更新总饱和计数。'}
+];
+function requantize(acc){
+ const magnitude=Math.floor((Math.abs(acc)+128)/256);
+ const rounded=acc<0&&magnitude!==0?-magnitude:magnitude;
+ const sat=rounded>32767||rounded< -32768;
+ const data=Math.max(-32768,Math.min(32767,rounded));
+ const bits=(data<0?65536+data:data).toString(2).padStart(16,'0');
+ return {rounded,data,sat,flag:Number(sat),bits,word:(Number(sat)<<16)|(data&65535)};
+}
+function results(){return state.values.slice(0,state.lanes).map(requantize)}
+function codePanel(){
+ if(state.mode==='manual'){manualCodePanel();return}
+ const l=lessons[state.step];
+ $('code').innerHTML=source.map((line,i)=>'<span class="code-line '+(l.lines.includes(i)?'selected':'faint')+'"><span class="ln">'+(i+1)+'</span>'+esc(line)+'</span>').join('');
+ $('codeFoot').textContent=l.foot;$('explainTitle').textContent=l.tip;$('explainText').textContent=l.explain;
+}
+function render(){
+ const manual=state.mode==='manual';
+ $('animationMode').classList.toggle('active',!manual);$('animationMode').setAttribute('aria-pressed',String(!manual));
+ $('manualMode').classList.toggle('active',manual);$('manualMode').setAttribute('aria-pressed',String(manual));
+ $('modeHint').textContent=manual?'先填写，再核对；每一步都有提示和手写式解答。':'先看动画，再亲手算一遍。';
+ $('animationToolbar').hidden=manual;
+ $('keyboardHint').innerHTML=manual?'<span class="kbd">←</span> <span class="kbd">→</span> 手算上 / 下一步 · <span class="kbd">Enter</span> 检查输入':'<span class="kbd">←</span> <span class="kbd">→</span> 切换章节 · <span class="kbd">空格</span> 播放 / 暂停';
+ const l=lessons[state.step];
+ $('chapters').innerHTML=lessons.map((x,i)=>'<button class="chapter '+(!manual&&i===state.step?'active':'')+'" data-step="'+i+'" '+(!manual&&i===state.step?'aria-current="step"':'')+'><span class="num">0'+(i+1)+'</span><span><strong>'+x.short+'</strong><small>'+x.sub+'</small></span></button>').join('');
+ if(manual){renderManual();return}
+ $('stageLabel').textContent='0'+(state.step+1)+' / '+l.short;
+ $('stageSubtitle').textContent=l.sub;$('takeaway').innerHTML=l.take;
+ const stage=$('stage');stage.className='stage lesson-enter'+(state.lanes===16?' dense':'');
+ stage.innerHTML=[bitsStage,arrayStage,parallelStage,wordStage,sumStage,controlStage][state.step]();
+ codePanel();renderPlayback();
+}
+function renderPlayback(){
+ if(state.mode==='manual'){
+   const done=manualProgress(),total=state.lanes*5+1;
+   $('progress').style.width=(done/total*100)+'%';
+   $('progressText').textContent='手算模式 · 已核对 '+done+' / '+total+' 项 · 答题记录在本次打开期间保留';
+   return;
+ }
+ $('play').textContent=state.playing?'Ⅱ 暂停讲解':state.finished?'↻ 再看一遍':'▶ 播放讲解';
+ $('play').setAttribute('aria-label',state.playing?'暂停讲解':'播放讲解');
+ $('prev').disabled=state.step===0;$('next').disabled=state.step===5;
+ const portion=state.finished?1:(state.step+state.beat/lessons[state.step].duration)/6;
+ $('progress').style.width=(portion*100)+'%';
+ $('progressText').textContent='第 '+(state.step+1)+' / 6 课 · '+(state.finished?'已完成，可以自由探索':state.playing?'正在播放，随时可以暂停探索':'已暂停，可以自由探索');
+}
+function bitsStage(){
+ const bits=state.row.toString(2).padStart(7,'0');
+ return '<h2>数字，是一排开关。</h2><p class="desc">每个 bit 只能是 0 或 1。点一下开关，看看数字如何变化。</p><div class="box"><span class="chip">logic [6:0] row_index;</span><div class="bit-row">'+[...bits].map((v,i)=>'<div class="bit-col"><small>bit '+(6-i)+'</small><button class="bit '+(v==='1'?'on':'')+'" data-bit="'+(6-i)+'" aria-label="切换第 '+(6-i)+' 位，当前 '+v+'">'+v+'</button><em>× '+2**(6-i)+'</em></div>').join('')+'</div><div class="formula">'+([...bits].map((v,i)=>v==='1'?2**(6-i):null).filter(x=>x!==null).join(' + ')||'0')+' = '+state.row+'</div><div class="number-control"><input id="rowRange" type="range" min="0" max="127" value="'+state.row+'" aria-label="row_index 数值"><output class="number-display">'+state.row+'</output><button id="addRow" aria-label="row_index 加一">+1</button></div></div><div class="mini-grid"><div class="box"><strong>6 − 0 + 1</strong><span>共有 7 个 bit</span></div><div class="box"><strong>2⁷ = 128</strong><span>能表示 128 种状态</span></div><div class="box"><strong>0 → 127</strong><span>无符号取值范围</span></div></div><p class="small-note">这里是位宽练习；真实控制逻辑让行号只在 0～98 之间使用。7 位中，127 再加 1 会截掉进位并变回 0。</p>';
+}
+function arrayStage(){
+ const r=results();
+ return '<h2>数组，就是许多份同类数据。</h2><p class="desc"><code>logic signed <b>[39:0]</b> accumulator <b>[0:LANES-1]</b>;</code><br>左边：每份 40 位、有正负。右边：一共有 '+state.lanes+' 份，下标从 0 开始。</p><div class="array-header"><span>lane</span><span>product<br>32 bit</span><span>accumulator<br>40 bit</span><span>quantized<br>17 bit</span><span>output_buffer<br>16 bit</span></div>'+r.map((x,i)=>'<div class="array-row '+(i===state.selected?'active':'')+'"><span class="lane-label">'+i+'</span>'+['product','accumulator','quantized','output_buffer'].map((name,j)=>'<button class="array-cell '+(i===state.selected?'sel':'')+'" data-lane="'+i+'" aria-label="选中 '+name+' 的第 '+i+' 个元素">'+(j===0?'…':j===1?fmt(state.values[i]):j===2?x.flag+' | '+x.data:x.data)+'<small>'+name+'['+i+']</small></button>').join('')+'</div>').join('')+'<div class="array-bottom"><span class="chip">lane '+state.selected+'</span> 同一行的四份数据，属于同一条通道。</div><p class="small-note">此处展示数据归属。乘法、累加、保存 output_buffer 的动作在后面的时序逻辑；缓冲栏展示预期保存的数据。</p>';
+}
+function scenarioButtons(){return '<div class="inline-buttons" aria-label="示例数据"><button data-scenario="mixed">正常 + 正负饱和</button><button data-scenario="normal">全部正常</button><button data-scenario="saturated">全部饱和</button></div>'}
+function parallelStage(){
+ return '<h2>一个 for，展开一排硬件。</h2><p class="desc">想象 '+state.lanes+' 台小机器并排摆着：每台只处理自己的通道。</p>'+scenarioButtons()+'<div id="parallelFlows" class="'+(state.playing?'parallel-active':'')+'"><div class="flow-head"><span>q</span><span>accumulator[q]</span><span></span><span>requantize()</span><span></span><span>quantized[q]</span></div>'+results().map((r,i)=>'<div class="flow-row"><span class="lane-label">'+i+'</span><div class="flow-cell">'+fmt(state.values[i])+'<small>40 bit · signed</small></div><span class="arrow">→</span><div class="flow-cell quantizer">÷256 → 舍入<br>→ 限制范围</div><span class="arrow">→</span><div class="flow-cell result '+(r.sat?'sat':'')+'">'+r.flag+' | '+fmt(r.data)+'<small>标志 | 16 位数据</small></div></div>').join('')+'</div><div class="formula" style="margin-top:18px">quantized[0] = requantize(accumulator[0]);<br>quantized[1] = requantize(accumulator[1]);<br>… 共 '+state.lanes+' 份，持续并行计算</div><p class="small-note">动画中的箭头表示数据关系，不代表依次执行或固定时钟拍数。</p>';
+}
+function wordStage(){
+ const lane=state.selected,r=requantize(state.values[lane]);
+ return '<h2>一份结果，分成两部分。</h2><p class="desc">选一个通道，修改累加器原始整数，亲手试试“饱和”。</p><div class="lane-picker">'+results().map((x,i)=>'<button class="'+(i===lane?'active':'')+'" data-lane="'+i+'">lane '+i+'</button>').join('')+'</div><label class="input-label" for="accValue">accumulator['+lane+'] · 40 位有符号整数</label><form id="accForm" class="acc-input"><input id="accValue" type="number" step="1" min="-549755813888" max="549755813887" value="'+state.values[lane]+'" required><button type="submit">应用</button></form><div class="validation" id="validation" aria-live="polite"></div><div class="inline-buttons"><button data-acc="25600">正常：100</button><button data-acc="10240000">超上限：40000</button><button data-acc="-10240000">超下限：−40000</button><button data-acc="-3200">负半值：−12.5</button><button data-acc="8388480">上界半值：32767.5</button></div><div class="quant-equation '+(r.sat?'sat':'')+'"><span>÷ 256<br><b>'+fmt(state.values[lane]/256)+'</b></span><span>→ 就近舍入 →<br><b>'+fmt(r.rounded)+'</b></span><span>→ 限幅后<br><strong>'+fmt(r.data)+'</strong></span></div><div class="word17"><span class="tiny-bit flag">'+r.flag+'</span><span style="text-align:center;color:#b7c2b0">|</span>'+[...r.bits].map((v,i)=>'<span class="tiny-bit '+(i===0?'sign':'')+'" title="bit '+(15-i)+'">'+v+'</span>').join('')+'</div><div class="word-labels"><span>bit16<br>饱和标志</span><span>bit15 … bit0 · 数据的补码（蓝色下划线：符号位 bit15）</span></div><div class="answer-note '+(r.sat?'sat':'')+'">'+(r.sat?'超出 −32768～32767：夹到 '+fmt(r.data)+'，饱和标志为 1。':'舍入后在范围内：保留 '+fmt(r.data)+'，饱和标志为 0。')+(r.data<0?' 这个结果为负，低 16 位的最高位 bit15 是 1。':'')+'</div><p class="small-note">量化结果在这里按整数编码展示。−12.5 舍入为 −13；+12.5 舍入为 +13。负数不会自动使饱和标志变成 1。</p>';
+}
+function sumStage(){
+ const r=results(),shown=state.playing?Math.min(state.lanes,Math.floor(state.beat*state.lanes/6)):state.lanes;
+ const count=r.slice(0,shown).reduce((a,x)=>a+x.flag,0);
+ return '<h2>每个标志，都只贡献 0 或 1。</h2><p class="desc">从 0 开始，把每条通道的 <code>quantized[s][16]</code> 加在一起。</p>'+scenarioButtons()+'<div class="flag-grid">'+r.map((x,i)=>'<div class="flag-card '+(x.sat?'sat ':'')+(i>=shown?'dimmed':'')+'"><small>lane '+i+'</small><b>'+x.flag+'</b><code>'+ (x.flag?'00001':'00000')+'</code></div>').join('')+'</div><p class="subheading" style="text-align:center">位拼接示例：{4\'d0, 1\'b1} → 00001 → 十进制 1</p><div class="concat"><span>0</span><span>0</span><span>0</span><span>0</span><span class="last">1</span></div><div class="sum-line">0'+r.slice(0,shown).map(x=>' + <span class="'+(x.sat?'sat':'')+'">'+x.flag+'</span>').join('')+(shown<state.lanes?' + …':'')+' = '+count+'</div><div class="count-result"><strong>'+count+'</strong><div><p>当前'+(shown<state.lanes?'已展示部分':'这一组')+'的饱和数量</p><small>saturation_increment = '+count.toString(2).padStart(5,'0')+'</small></div></div><div class="step-indicator">'+(state.playing?'阅读动画：已展示 '+shown+' / '+state.lanes+' 个加数；这是组合逻辑，不是时钟计数。':'输入不变，结果保持不变；重新求值不会把上次的结果再加一遍。')+'</div>';
+}
+const controlInfo={
+ index:[['row_index','当前行：0～98','7 位能装到 127，工程只使用 99 行。'],['group_index','当前组：0～15','每组 16 个输出，共 16 组，覆盖 256 列。'],['write_lane','写回通道：0～15','S_WRITE 中依次把缓冲结果写回。'],['bias_lane_d','延迟后的偏置通道编号','与同步 SRAM 返回的偏置数据对齐。']],
+ issue:[['bias_issue','偏置读取进度：0～16','0～15 发起读取，16 表示请求已发完。需要 5 位才能表示 16。'],['mac_issue','乘加读取进度：0～64','0～63 发起读取，64 表示请求已发完。需要 7 位才能表示 64。']],
+ valid:[['bias_valid','偏置返回数据有效','为 1 时，才把返回的偏置装入对应累加器。'],['mac_read_valid','乘法输入有效','为 1 时，才用返回的 X/W 数据计算乘积。'],['product_valid','乘积有效','为 1 时，才把乘积加入 accumulator。'],['mac_read_last / product_last','标记最后一项','最后一次读取对应的标记随乘积流水线传递，用于判断何时结束。']]
+};
+function controlStage(){
+ const items=controlInfo[state.controls];
+ return '<h2>数据之外，还需要“路标”。</h2><p class="desc">点选一组控制信号，查看它们在这个工程中的实际用途。</p><div class="control-tabs">'+[['index','位置与通道'],['issue','发起进度'],['valid','有效与最后一项']].map(([key,label])=>'<button data-control="'+key+'" class="'+(state.controls===key?'active':'')+'">'+label+'</button>').join('')+'</div><div class="control-data">'+items.map(x=>'<div class="box"><code>'+x[0]+'</code><strong>'+x[1]+'</strong><p>'+x[2]+'</p></div>').join('')+'</div><div class="signal-pipe"><div class="signal-box" id="sigRead">SRAM 返回<b>mac_read_valid</b></div><span class="arrow">→</span><div class="signal-box" id="sigProduct">保存乘积<b>product_valid</b></div><span class="arrow">→</span><div class="signal-box" id="sigAcc">累加乘积<b>accumulator</b></div></div><div class="answer-note">valid = 1：这一份数据可用。last = 1：这份是最后一项。<br>它们随流水线对齐；最后一项也需要 valid 有效才处理。</div><p class="small-note">高亮只辅助阅读。实际工程可以每拍连续发起读取，不同阶段可同时处理不同的数据项。</p>';
+}
+const freshAnswer=()=>({value:'',checked:false,hint:false,revealed:false,consulted:false});
+const freshLane=()=>Array.from({length:5},freshAnswer);
+const manual={phase:0,sheets:Array.from({length:16},freshLane),total:freshAnswer(),notice:''};
+const exact=n=>Number(n).toLocaleString('en-US',{maximumFractionDigits:8});
+const manualSteps=['除以 256','按规则舍入','限制范围','判断饱和','拼接 17 位','整组计数'];
+const manualSource=[
+ '// requantize() 的核心逻辑（节选）',
+ 'if (wide_value < 0) begin',
+ '  magnitude = -wide_value;',
+ "  rounded = -((magnitude + 41'sd128) >>> 8);",
+ 'end else begin',
+ "  rounded = (wide_value + 41'sd128) >>> 8;",
+ 'end',
+ "if (rounded > 41'sd32767)",
+ "  requantize = {1'b1, 16'h7fff};",
+ "else if (rounded < -41'sd32768)",
+ "  requantize = {1'b1, 16'h8000};",
+ 'else',
+ "  requantize = {1'b0, rounded[15:0]};"
+];
+function clearManual(lane){
+ if(lane===undefined)manual.sheets=Array.from({length:16},freshLane);
+ else manual.sheets[lane]=freshLane();
+ manual.total=freshAnswer();
+}
+function expectedManual(phase=manual.phase,lane=state.selected){
+ const r=requantize(state.values[lane]);
+ return [state.values[lane]/256,r.rounded,r.data,r.flag,String(r.flag)+r.bits,results().reduce((n,x)=>n+x.flag,0)][phase];
+}
+function numericAnswer(value){
+ const normalized=value.trim().replace(/[,，\s]/g,'').replace(/−/g,'-');
+ if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(normalized))return NaN;
+ const n=Number(normalized);return Number.isFinite(n)?n:NaN;
+}
+function binaryAnswer(value){return value.trim().replace(/^0b/i,'').replace(/[\s_|]/g,'')}
+function answerCorrect(field,phase,lane){
+ if(phase===4)return /^[01]{17}$/.test(binaryAnswer(field.value))&&binaryAnswer(field.value)===expectedManual(phase,lane);
+ return numericAnswer(field.value)===expectedManual(phase,lane);
+}
+function verified(field,phase,lane){return field.checked&&answerCorrect(field,phase,lane)}
+function manualField(){return manual.phase===5?manual.total:manual.sheets[state.selected][manual.phase]}
+function laneComplete(lane){return manual.sheets[lane].every((field,phase)=>verified(field,phase,lane))}
+function manualProgress(){return manual.sheets.slice(0,state.lanes).reduce((n,lane,i)=>n+lane.filter((field,phase)=>verified(field,phase,i)).length,0)+Number(verified(manual.total,5,0))}
+function setMode(mode){stop();state.mode=mode;render()}
+function manualCodePanel(){
+ const p=manual.phase;
+ const lines=p===5?source:manualSource;
+ const active=p===5?[10,14,15,16,17,18,19]:p<2?[1,2,3,4,5,6]:p===2?[7,8,9,10,11,12]:[8,10,12];
+ $('code').innerHTML=lines.map((line,i)=>'<span class="code-line '+(active.includes(i)?'selected':'faint')+'"><span class="ln">'+(i+1)+'</span>'+esc(line)+'</span>').join('');
+ $('codeFoot').textContent=p===5?'回到原片段：把每条通道的 bit16 相加。':'手算展开的是 requantize() 内部的实际规则。';
+ $('explainTitle').textContent=['为什么除以 256？','为什么要“半值远离零”？','范围由 16 位 signed 决定','饱和标志与符号位不同','补码结果加上一位状态','这是当前组的数量'][p];
+ $('explainText').textContent=[
+   '乘积和累加结果保留了更多小数位。项目在这里除以 2⁸ = 256，把累加器对齐到输出的数据尺度。先算出精确商，再进行下一步舍入。',
+   '这与 JavaScript 对负半值的默认取整方式不同。工程先对绝对值加 128，再右移 8 位，最后恢复符号。因此 +12.5 → +13，−12.5 → −13。',
+   '16 位有符号补码能表示 −32768～32767。比较的是“舍入后的数”。恰好等于边界时仍在范围内，不算饱和。',
+   'quantized 的 bit16 表示是否因超范围而被限幅。低 16 位的 bit15 才是结果的符号位。负数可以同时具有 bit15=1、bit16=0。',
+   '先把限幅结果写成 16 位补码，再在左侧加上饱和标志。注意：quantized 是状态与数据的拼接，不能把整个 17 位当作一个普通有符号数。',
+   '每条通道只贡献 0 或 1。saturation_increment 每次组合求值都从 0 开始；它不会自动记住上一组。16 个通道需要 5 位表示 0～16。'
+ ][p];
+}
+function knownPrevious(){
+ const p=manual.phase;if(p===0||p===5)return '';
+ const field=manual.sheets[state.selected][p-1];
+ return verified(field,p-1,state.selected)?'<p class="small-note">上一步已核对：<span class="mono">'+esc(field.value)+'</span></p>':'<p class="small-note">上一步尚未核对正确，可以先返回计算；也可以独立完成当前题。</p>';
+}
+function manualSummary(){
+ return '<details class="manual-summary" '+(manual.phase===5?'open':'')+'><summary>我的整组草稿 · 未检查的填写会标为待核对</summary><div class="manual-table-wrap"><table class="manual-table"><thead><tr><th>通道</th><th>原始整数</th><th>我的限幅结果</th><th>我的饱和标志</th><th>进度</th></tr></thead><tbody>'+state.values.slice(0,state.lanes).map((acc,i)=>'<tr><td><button data-manual-lane="'+i+'">lane '+i+'</button></td><td>'+fmt(acc)+'</td>'+[2,3].map(p=>{const f=manual.sheets[i][p];return '<td>'+esc(f.value||'—')+'<span class="manual-status '+(verified(f,p,i)?'ok':f.checked?'wrong':'')+'">'+(verified(f,p,i)?'已核对':f.checked?'再检查':'待核对')+'</span></td>'}).join('')+'<td>'+manual.sheets[i].filter((f,p)=>verified(f,p,i)).length+'/5</td></tr>').join('')+'</tbody></table></div></details>';
+}
+function manualQuestion(){
+ const p=manual.phase,acc=state.values[state.selected];
+ const prompts=[
+   ['先算出精确的商','只做除法，暂时不取整。小数最多有 8 位，可以全部写出。','accumulator['+state.selected+'] / 256 = '+fmt(acc)+' / 256','你的除法结果','例如：12.5'],
+   ['把商舍入到整数','选最近的整数；恰好在中间时，朝远离 0 的方向。','规则：+2.5 → +3；−2.5 → −3','舍入后的整数','填写一个整数'],
+   ['把整数限制在范围内','超过上限取上限，低于下限取下限；在范围内保持原值。','−32768 ≤ 输出整数 ≤ 32767','限幅后的整数','填写一个整数'],
+   ['这一条通道饱和了吗？','只有“舍入后的数”超出范围并发生限幅，才填写 1；否则填 0。','quantized['+state.selected+'][16] = ?','饱和标志（0 或 1）','0 或 1'],
+   ['拼成完整的 17 位','先写低 16 位数据的补码，再把饱和标志放在最左边。','{饱和标志, 16 位数据补码}','17 位二进制（可用 | 分隔）','例如：0 | 0000000000000000'],
+   ['这组一共有几个饱和？','查看下面的草稿，把每条通道的饱和标志加起来。尚未填完也可以先练习。','saturation_increment = 0 + flag[0] + … + flag['+(state.lanes-1)+']','整组饱和数量（十进制）','0～'+state.lanes]
+ ][p];
+ const field=manualField();
+ return '<section class="manual-question"><h3>'+prompts[0]+'</h3><p class="desc">'+prompts[1]+'</p><div class="manual-given">'+esc(prompts[2])+'</div>'+knownPrevious()+'<form id="manualAnswerForm" novalidate><label for="manualAnswer">'+prompts[3]+'</label><div class="manual-answer-row"><input id="manualAnswer" class="'+(p===4?'binary-answer':'')+'" type="text" '+(p===4?'':'inputmode="decimal"')+' value="'+esc(field.value)+'" placeholder="'+esc(prompts[4])+'" autocomplete="off" spellcheck="false" aria-describedby="manualFeedback"></div><div class="manual-actions"><button type="submit" class="primary">检查这一步</button><button type="button" data-manual-action="hint">给我提示</button><button type="button" data-manual-action="reveal">查看解答</button></div></form><div id="manualFeedback" class="manual-feedback" role="status"></div><div id="manualHint" class="manual-hint" hidden></div><div id="manualSolution" class="manual-solution" hidden></div></section>';
+}
+function renderManual(){
+ const p=manual.phase;
+ $('stageLabel').textContent='手算 / '+(p===5?'整组计数':'lane '+state.selected+' · 第 '+(p+1)+' 步');
+ $('stageSubtitle').textContent='每条通道 5 步，最后汇总 '+state.lanes+' 条通道';
+ $('takeaway').innerHTML='<b>先算商 → 舍入 → 限幅 → 判断饱和 → 拼接 17 位 → 汇总标志。</b>这里只展示整数编码；每一步都可查看提示和完整算式。';
+ const done=manualProgress();
+ $('stage').className='stage lesson-enter';
+ $('stage').innerHTML='<div class="manual-meta"><span class="chip">✎ 已核对 '+done+' / '+(state.lanes*5+1)+' 项</span><button data-manual-action="resetAll">清空全部答题</button></div><h2>这一次，让你来计算。</h2><p class="desc">答案先藏起来。切换通道或返回动画时，你的草稿会保留。</p><div class="manual-presets"><button data-manual-preset="simple">简单练习</button><button data-manual-preset="boundary">边界练习</button><button data-manual-preset="original">原始示例</button></div><p class="small-note" style="margin:0 0 13px">更换练习会清空整组答题；修改一个通道只清空该通道与整组计数。</p><div class="lane-picker manual-lanes">'+state.values.slice(0,state.lanes).map((_,i)=>'<button data-manual-lane="'+i+'" class="'+(p!==5&&i===state.selected?'active ':'')+(laneComplete(i)?'done':'')+'" aria-label="手算通道 '+i+(laneComplete(i)?'，已完成':'')+'">lane '+i+'</button>').join('')+'</div>'+(p!==5?'<div class="manual-top"><label for="manualAcc">题目：accumulator['+state.selected+'] 的原始整数</label><form id="manualAccForm" class="acc-input" novalidate><input id="manualAcc" type="text" inputmode="numeric" value="'+state.values[state.selected]+'" aria-describedby="manualNotice"><button type="submit">应用题目</button></form></div>':'')+'<p class="manual-notice" id="manualNotice" role="status">'+esc(manual.notice)+'</p><nav class="manual-steps" aria-label="手算步骤">'+manualSteps.map((name,i)=>'<button data-manual-phase="'+i+'" class="'+(i===p?'active ':'')+((i===5?verified(manual.total,5,0):verified(manual.sheets[state.selected][i],i,state.selected))?'done':'')+'" '+(i===p?'aria-current="step"':'')+'><span class="step-number">'+(i+1)+'</span>'+name+'</button>').join('')+'</nav>'+manualQuestion()+'<div class="manual-nav"><button data-manual-action="prev" '+(p===0&&state.selected===0?'disabled':'')+'>← 上一步</button><button data-manual-action="next" '+(p===5?'disabled':'')+'>'+ (p===4?(state.selected<state.lanes-1?'计算下一条通道 →':'汇总整组 →'):'下一步 →')+'</button></div>'+manualSummary()+(done===state.lanes*5+1?'<div class="manual-complete"><b>这一组已经全部核对正确。</b>你完成了 '+state.lanes+' 条通道的量化和整组饱和计数。可以切回动画对照，或选择新的练习。</div>':'')+'<p class="manual-guide">逐步手算是为了理解电路；真实量化器并行工作，组合求和也不是按这些步骤逐拍执行。草稿仅保存在当前页面，刷新后会清空。</p>';
+ manualFeedback();codePanel();renderPlayback();
+}
+function manualHint(){
+ return [
+   '先用绝对值做整数除法：|acc| = 256 × 整数部分 + 余数。再算余数 ÷ 256，最后恢复正负号。不要在这一步舍入。',
+   '看绝对值的小数部分：小于 0.5 则舍去；大于或等于 0.5，则整数部分加 1。最后恢复原数的正负号。',
+   '拿“舍入后的整数”比较：大于 32767 吗？小于 −32768 吗？两者都不是，就原样保留。',
+   '负数不等于饱和。只有上一阶段为了落入范围而改变了数值，bit16 才等于 1；舍入本身不算饱和。',
+   '正数直接转成 16 位二进制并补前导 0；负数先写绝对值的 16 位二进制，逐位取反再加 1。最后在最左边加上饱和标志。',
+   '先把每条通道的第 4 步检查正确，再数有几个标志为 1。注意最后可能是 16，这时 5 位二进制为 10000。'
+ ][manual.phase];
+}
+function manualSolution(){
+ const p=manual.phase,acc=state.values[state.selected],r=requantize(acc),a=Math.abs(acc),whole=Math.floor(a/256),rem=a%256;
+ if(p===0)return '<h4>手算过程 · 精确除法</h4><div class="mono">'+fmt(a)+' = 256 × '+fmt(whole)+' + '+rem+'<br>'+rem+' ÷ 256 = '+exact(rem/256)+'<br>'+fmt(acc)+' ÷ 256 = '+(acc<0?'−(':'(')+fmt(whole)+' + '+exact(rem/256)+') = <b>'+exact(acc/256)+'</b></div>';
+ if(p===1)return '<h4>手算过程 · 半值远离零</h4><div class="mono">原商 = '+exact(acc/256)+'<br>绝对值的整数部分 = '+fmt(whole)+'<br>绝对值的小数部分 = '+exact(rem/256)+'<br>'+exact(rem/256)+(rem>=128?' ≥ 0.5 → 整数部分加 1':' < 0.5 → 整数部分不变')+'<br>恢复'+(acc<0?'负':'非负')+'号：<b>'+fmt(r.rounded)+'</b></div><p>对应电路：先计算 ⌊(|acc| + 128) ÷ 256⌋，再恢复符号。除法结果为 0 时没有负零编码。</p>';
+ if(p===2)return '<h4>手算过程 · 限制范围</h4><div class="mono">舍入结果 = '+fmt(r.rounded)+'<br>'+(r.rounded>32767?'大于上限 32767 → 保留上限':r.rounded< -32768?'小于下限 −32768 → 保留下限':'位于 −32768～32767 → 保留原值')+'<br>最终整数 = <b>'+fmt(r.data)+'</b></div>';
+ if(p===3)return '<h4>手算过程 · 判断是否限幅</h4><div class="mono">舍入结果 = '+fmt(r.rounded)+'<br>限幅结果 = '+fmt(r.data)+'<br>'+ (r.sat?'因超范围而改变 → 发生饱和':'数值未因限幅改变 → 没有饱和')+'<br>quantized['+state.selected+'][16] = <b>'+r.flag+'</b></div>';
+ if(p===4){
+   const magnitude=Math.abs(r.data).toString(2).padStart(16,'0'),inverted=[...magnitude].map(v=>v==='0'?'1':'0').join('');
+   return '<h4>手算过程 · 数据补码与状态拼接</h4><div class="mono">限幅结果 = '+fmt(r.data)+'<br>'+(r.data<0?'绝对值的二进制：'+magnitude+'<br>逐位取反：'+inverted+'<br>再加 1：'+r.bits:'转为二进制，补足 16 位：<br>'+r.bits)+'<br>饱和标志 = '+r.flag+'<br>完整 17 位：<b>'+r.flag+' | '+r.bits+'</b></div><p>bit16 是饱和标志；低 16 位中的 bit15 才是数据的符号位。</p>';
+ }
+ const flags=results().map(x=>x.flag),sum=flags.reduce((n,f)=>n+f,0);
+ return '<h4>手算过程 · 从 0 开始求和</h4><div class="manual-tally mono">0 + '+flags.join(' + ')+' = <b>'+sum+'</b><br>十进制 '+sum+' = 五位二进制 '+sum.toString(2).padStart(5,'0')+'</div><p>每个标志补成 00000 或 00001 后相加。得到当前这一组的数量；下一组重新从 0 求和。</p>';
+}
+function manualFeedback(){
+ const f=manualField(),p=manual.phase,feedback=$('manualFeedback');if(!feedback)return;
+ const correct=verified(f,p,state.selected);
+ const valid=p===4?/^[01]{17}$/.test(binaryAnswer(f.value)):Number.isFinite(numericAnswer(f.value));
+ feedback.className='manual-feedback'+(f.checked?(correct?' good':' bad'):'');
+ feedback.textContent=!f.checked?'先填写你的结果，再点击“检查这一步”。':correct?(f.consulted?'结果正确。你查看过参考过程，也可以清空后独立再算一遍。':'✓ 这一步算对了。可以继续下一步。'):f.value.trim()===''?'请先填写一个结果。':!valid?(p===4?'请填写完整的 17 位 0/1，可包含空格、| 或下划线。':'请输入有效数字，小数使用英文句点。'):[
+   '再检查除数是否为 256；这一步需要保留完整小数，先不要取整。',
+   '再看一次舍入规则：正负半值都朝远离 0 的方向，不能直接截掉小数。',
+   '请比较舍入后的整数和 −32768～32767；等于边界时仍保留原值。',
+   '再判断是否因为超范围而发生限幅。负号和普通舍入都不等于饱和。',
+   '再检查低 16 位补码和左侧饱和标志；bit16 不是结果的符号位。',
+   '再核对各通道标志，每个标志只贡献 0 或 1，并从 0 开始相加。'
+ ][p];
+ $('manualAnswer').setAttribute('aria-invalid',String(f.checked&&!correct));
+ $('manualHint').hidden=!f.hint;$('manualHint').textContent='提示：'+manualHint();
+ $('manualSolution').hidden=!f.revealed;$('manualSolution').innerHTML=f.revealed?manualSolution():'';
+}
+function manualNavigate(direction){
+ manual.notice='';
+ if(direction>0){if(manual.phase===5)return;if(manual.phase<4)manual.phase++;else if(state.selected<state.lanes-1){state.selected++;manual.phase=0}else manual.phase=5}
+ else {if(manual.phase===5){state.selected=state.lanes-1;manual.phase=4}else if(manual.phase>0)manual.phase--;else if(state.selected>0){state.selected--;manual.phase=4}}
+ render();
+}
+function checkManual(){const f=manualField();f.value=$('manualAnswer').value;f.checked=true;render()}
+function refreshManualRecords(){
+ const done=manualProgress(),total=state.lanes*5+1;
+ document.querySelector('.manual-meta .chip').textContent='✎ 已核对 '+done+' / '+total+' 项';
+ document.querySelectorAll('[data-manual-phase]').forEach(b=>{const p=Number(b.dataset.manualPhase);b.classList.toggle('done',p===5?verified(manual.total,5,0):verified(manual.sheets[state.selected][p],p,state.selected))});
+ document.querySelectorAll('.manual-lanes [data-manual-lane]').forEach(b=>{const lane=Number(b.dataset.manualLane),done=laneComplete(lane);b.classList.toggle('done',done);b.setAttribute('aria-label','手算通道 '+lane+(done?'，已完成':''))});
+ const summary=document.querySelector('.manual-summary'),open=summary.open;
+ summary.outerHTML=manualSummary();document.querySelector('.manual-summary').open=open;
+ if(done<total)document.querySelector('.manual-complete')?.remove();
+}
+function manualClick(b){
+ if(b.dataset.manualLane!==undefined){state.selected=Number(b.dataset.manualLane);if(manual.phase===5)manual.phase=0;manual.notice='';render()}
+ else if(b.dataset.manualPhase!==undefined){manual.phase=Number(b.dataset.manualPhase);manual.notice='';render()}
+ else if(b.dataset.manualPreset){
+   const kind=b.dataset.manualPreset;
+   const simple=[640,10240000,-10240000,-3200,128,-128,25600,-25600,0,384,-384,8388608,-8388864,1024,-1024,64];
+   const boundaries=[8388352,8388480,-8388608,-8388736,127,128,-127,-128,0,256,-256,384,-384,549755813887,-549755813888,8388607];
+   state.values=[...(kind==='simple'?simple:kind==='boundary'?boundaries:original)];clearManual();manual.phase=0;state.selected=0;manual.notice='已更换题目，整组答题已清空。';render();
+ }else if(b.dataset.manualAction){
+   const action=b.dataset.manualAction;
+   if(action==='prev'||action==='next'){manualNavigate(action==='next'?1:-1);return}
+   if(action==='resetAll'){clearManual();manual.phase=0;manual.notice='已清空答题；题目数字保持不变。';render();return}
+   const field=manualField();
+   if(action==='hint')field.hint=!field.hint;
+   if(action==='reveal'){field.revealed=!field.revealed;if(field.revealed)field.consulted=true}
+   manualFeedback();
+ }
+}
+function applyManualAcc(){
+ const acc=numericAnswer($('manualAcc').value);
+ if(!Number.isSafeInteger(acc)||acc< -549755813888||acc>549755813887){$('manualNotice').textContent='请输入 −549755813888～549755813887 之间的整数。';return}
+ if(acc===state.values[state.selected]){$('manualNotice').textContent='题目没有变化，你的答题记录已保留。';return}
+ state.values[state.selected]=acc;clearManual(state.selected);manual.phase=0;manual.notice='已更新 lane '+state.selected+'，清空了该通道和整组计数的答题。';render();
+}
+function stop(){state.playing=false;clearTimeout(state.timer);state.timer=null;renderPlayback();$('parallelFlows')?.classList.remove('parallel-active');document.querySelectorAll('.bit.lit,.signal-box.live').forEach(el=>el.classList.remove('lit','live'));if(state.mode==='animation'&&state.step===4)$('stage').innerHTML=sumStage()}
+function gotoStep(i){if(i<0||i>=lessons.length)return;stop();state.mode='animation';state.step=i;state.beat=0;state.finished=false;render()}
+function schedule(){clearTimeout(state.timer);if(state.playing)state.timer=setTimeout(tick,1100*Number($('speed').value))}
+function tick(){
+ if(!state.playing)return;
+ state.beat++;
+ if(state.beat>=lessons[state.step].duration){
+   if(state.step===5){state.finished=true;stop();render();return}
+   state.step++;state.beat=0;render();
+ }else{
+   if(state.step===0){const b=6-(state.beat%7);document.querySelectorAll('[data-bit]').forEach(el=>el.classList.toggle('lit',Number(el.dataset.bit)===b))}
+   if(state.step===1){state.selected=state.beat%state.lanes;$('stage').innerHTML=arrayStage()}
+   if(state.step===3&&state.beat%2===0){state.selected=Math.floor(state.beat/2)%state.lanes;$('stage').innerHTML=wordStage()}
+   if(state.step===4)$('stage').innerHTML=sumStage();
+   if(state.step===5){const ids=['sigRead','sigProduct','sigAcc'];ids.forEach((id,i)=>$(id)?.classList.toggle('live',i===state.beat%3))}
+   renderPlayback();
+ }
+ schedule();
+}
+function togglePlay(){
+ if(state.mode==='manual')return;
+ if(state.playing){stop();return}
+ if(state.finished){state.step=0;state.beat=0;state.finished=false}
+ state.playing=true;render();schedule();
+}
+function pauseForEdit(){stop();state.finished=false;state.beat=0}
+function setScenario(kind){
+ pauseForEdit();
+ state.values=Array.from({length:16},(_,i)=>kind==='mixed'?original[i]:kind==='normal'?((i%2?-1:1)*(i+1)*12345):(i%2?-10240000:10240000));
+ clearManual();manual.notice='动画数据已改变，手算答题已清空。';
+ render();
+}
+function applyAcc(v){
+ if(!Number.isSafeInteger(v)||v< -549755813888||v>549755813887){$('validation').textContent='请输入 −549755813888～549755813887 之间的整数。';return false}
+ pauseForEdit();if(state.values[state.selected]!==v){clearManual(state.selected);manual.notice='动画中修改了该通道，相关手算答题已清空。'}state.values[state.selected]=v;render();return true;
+}
+$('animationMode').addEventListener('click',()=>setMode('animation'));
+$('manualMode').addEventListener('click',()=>setMode('manual'));
+$('chapters').addEventListener('click',e=>{const b=e.target.closest('[data-step]');if(b)gotoStep(Number(b.dataset.step))});
+$('stage').addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;
+ if(state.mode==='manual'){manualClick(b);return}
+ if(b.dataset.bit!==undefined){pauseForEdit();state.row^=1<<Number(b.dataset.bit);render()}
+ else if(b.id==='addRow'){pauseForEdit();state.row=(state.row+1)&127;render()}
+ else if(b.dataset.lane!==undefined){pauseForEdit();state.selected=Number(b.dataset.lane);render()}
+ else if(b.dataset.scenario)setScenario(b.dataset.scenario);
+ else if(b.dataset.acc!==undefined)applyAcc(Number(b.dataset.acc));
+ else if(b.dataset.control){pauseForEdit();state.controls=b.dataset.control;render()}
+});
+$('stage').addEventListener('input',e=>{
+ if(e.target.id==='manualAnswer'){
+   const field=manualField();field.value=e.target.value;field.checked=false;field.revealed=false;
+   manualFeedback();refreshManualRecords();renderPlayback();return;
+ }
+ if(e.target.id==='rowRange'){
+   pauseForEdit();state.row=Number(e.target.value);
+   const bits=state.row.toString(2).padStart(7,'0');
+   document.querySelectorAll('[data-bit]').forEach((el,i)=>{el.textContent=bits[i];el.classList.toggle('on',bits[i]==='1');el.setAttribute('aria-label','切换第 '+(6-i)+' 位，当前 '+bits[i])});
+   document.querySelector('.number-display').textContent=state.row;
+   document.querySelector('.formula').textContent=([...bits].map((v,i)=>v==='1'?2**(6-i):null).filter(x=>x!==null).join(' + ')||'0')+' = '+state.row;
+ }
+});
+$('stage').addEventListener('submit',e=>{
+ if(e.target.id==='manualAnswerForm'){e.preventDefault();checkManual();return}
+ if(e.target.id==='manualAccForm'){e.preventDefault();applyManualAcc();return}
+ if(e.target.id==='accForm'){e.preventDefault();const raw=$('accValue').value;if(raw===''){$('validation').textContent='请先输入一个整数。';return}applyAcc(Number(raw))}
+});
+$('laneCount').addEventListener('change',e=>{pauseForEdit();const lanes=Number(e.target.value);if(lanes!==state.lanes){manual.total=freshAnswer();manual.notice='通道数已改变，已清空整组计数，保留各通道草稿。'}state.lanes=lanes;state.selected=Math.min(state.selected,state.lanes-1);render()});
+$('prev').addEventListener('click',()=>gotoStep(state.step-1));$('next').addEventListener('click',()=>gotoStep(state.step+1));$('play').addEventListener('click',togglePlay);
+$('speed').addEventListener('change',schedule);
+$('reset').addEventListener('click',()=>{stop();Object.assign(state,{mode:'animation',step:0,beat:0,lanes:4,selected:0,row:37,values:[...original],controls:'index',finished:false});clearManual();manual.phase=0;manual.notice='';$('laneCount').value='4';render()});
+document.addEventListener('keydown',e=>{if(e.target.closest('input,select,textarea,button,summary'))return;if(state.mode==='manual'){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();manualNavigate(e.key==='ArrowRight'?1:-1)}return}if(e.code==='Space'){e.preventDefault();togglePlay()}else if(e.key==='ArrowRight'){e.preventDefault();gotoStep(state.step+1)}else if(e.key==='ArrowLeft'){e.preventDefault();gotoStep(state.step-1)}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.playing)stop()});
+render();
+</script>
+</body>
+</html>

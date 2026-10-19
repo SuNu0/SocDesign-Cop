@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1190" viewBox="0 0 1800 1190" role="img" aria-label="控制连接：总线事务与计算任务分别推进">
+<defs><marker id="arrow-host" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#327d77"/></marker><marker id="arrow-mem" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4678a3"/></marker><marker id="arrow-core" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7766a0"/></marker><marker id="arrow-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ac6837"/></marker><marker id="arrow-plain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#526a62"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Segoe UI",sans-serif;fill:#243d37}.mono{font-family:Consolas,"Cascadia Code",monospace}.wire{fill:none;stroke-linejoin:round;stroke-linecap:round}.block{cursor:pointer}.block:hover .outline{stroke-width:2.5}.focus-dim{opacity:.12}.focus-on .outline{stroke-width:3}.focus-on.wire{stroke-width:3.8}</style>
+<rect width="1800" height="1190" fill="#fafbf8"/>
+<text x="38" y="35" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074" class="mono">FFN_ACCEL  /  RTL LOGICAL SCHEMATIC  /  SHEET 04</text>
+<text x="38" y="77" font-size="29" font-weight="700" text-anchor="start" style="fill:#243d37">控制连接：总线事务与计算任务分别推进</text>
+<text x="39" y="104" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">两个独立状态机：响应等待不会暂停计算；BUSY也不会禁止合法的状态寄存器读取。</text>
+<rect x="40" y="155" width="1700" height="360" rx="12" fill="none" stroke="#bfcfc1" stroke-width="1.3" stroke-dasharray="8 5"/>
+<text x="57" y="178" font-size="12" font-weight="600" text-anchor="start" style="fill:#708976">A · 总线事务状态机 host_state</text>
+<g class="block" data-key="idle" data-routes="read xwrite core" data-info="H_IDLE：cmd_ready = rst_n；等待accept=cmd_valid &amp; cmd_ready；命令接受时进行合法性检查" tabindex="0" role="button" aria-label="H_IDLE"><title>H_IDLE：cmd_ready = rst_n；等待accept=cmd_valid &amp; cmd_ready；命令接受时进行合法性检查</title>
+<rect class="outline" x="100" y="230" width="340" height="145" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="100" y="243" width="4" height="119" rx="2" fill="#327d77"/>
+<text x="116" y="258" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">H_IDLE</text>
+<text x="116" y="282" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_ready = rst_n</text>
+<text x="116" y="302" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">等待accept=cmd_valid &amp; cmd_ready</text>
+<text x="116" y="322" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">命令接受时进行合法性检查</text>
+</g>
+<g class="block" data-key="hread" data-routes="read" data-info="H_READ：只用于合法的数据SRAM读取；同步读数据已在上一沿后更新；本沿寄存符号扩展的读数" tabindex="0" role="button" aria-label="H_READ"><title>H_READ：只用于合法的数据SRAM读取；同步读数据已在上一沿后更新；本沿寄存符号扩展的读数</title>
+<rect class="outline" x="710" y="230" width="340" height="145" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="710" y="243" width="4" height="119" rx="2" fill="#327d77"/>
+<text x="726" y="258" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">H_READ</text>
+<text x="726" y="282" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">只用于合法的数据SRAM读取</text>
+<text x="726" y="302" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">同步读数据已在上一沿后更新</text>
+<text x="726" y="322" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">本沿寄存符号扩展的读数</text>
+</g>
+<g class="block" data-key="response" data-routes="read xwrite core" data-info="H_RESPONSE：rsp_valid=1，保持DATA与ERR；等待rsp_ready接收响应；响应握手后回到H_IDLE" tabindex="0" role="button" aria-label="H_RESPONSE"><title>H_RESPONSE：rsp_valid=1，保持DATA与ERR；等待rsp_ready接收响应；响应握手后回到H_IDLE</title>
+<rect class="outline" x="1310" y="230" width="370" height="145" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="1310" y="243" width="4" height="119" rx="2" fill="#327d77"/>
+<text x="1326" y="258" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">H_RESPONSE</text>
+<text x="1326" y="282" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">rsp_valid=1，保持DATA与ERR</text>
+<text x="1326" y="302" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">等待rsp_ready接收响应</text>
+<text x="1326" y="322" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">响应握手后回到H_IDLE</text>
+</g>
+<path class="wire" data-routes="read" d="M440,280 L710,280" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="read">
+<text x="575" y="266" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">合法SRAM读命令</text>
+</g>
+<path class="wire" data-routes="read" d="M1050,280 L1310,280" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="read">
+<text x="1180" y="266" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">下一拍寄存读响应</text>
+</g>
+<path class="wire" data-routes="xwrite read core" d="M270,230 L270,198 L1495,198 L1495,230" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite read core">
+<text x="904" y="190" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">寄存器读 / 所有写 / 错误访问：命令接受沿后直接产生响应</text>
+</g>
+<path class="wire" data-routes="read xwrite core" d="M1495,375 L1495,445 L270,445 L270,375" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="read xwrite core">
+<text x="871" y="433" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">rsp_valid &amp; rsp_ready：接收响应；下一沿才可接受新命令</text>
+</g>
+<text x="110" y="486" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">反压：rsp_ready=0时保持H_RESPONSE；cmd_ready=0，最多允许一个未完成事务。</text>
+<rect x="40" y="560" width="1700" height="414" rx="12" fill="none" stroke="#bfcfc1" stroke-width="1.3" stroke-dasharray="8 5"/>
+<text x="57" y="583" font-size="12" font-weight="600" text-anchor="start" style="fill:#708976">B · 计算状态机 state</text>
+<g class="block" data-key="S_IDLE" data-routes="core" data-info="S_IDLE：BUSY=0；等待合法START" tabindex="0" role="button" aria-label="S_IDLE"><title>S_IDLE：BUSY=0；等待合法START</title>
+<rect class="outline" x="90" y="644" width="260" height="120" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="90" y="657" width="4" height="94" rx="2" fill="#ac6837"/>
+<text x="106" y="672" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">S_IDLE</text>
+<text x="106" y="696" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">BUSY=0</text>
+<text x="106" y="716" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">等待合法START</text>
+</g>
+<g class="block" data-key="S_BIAS" data-routes="core" data-info="S_BIAS：16个偏置同步读及收尾；17拍" tabindex="0" role="button" aria-label="S_BIAS"><title>S_BIAS：16个偏置同步读及收尾；17拍</title>
+<rect class="outline" x="425" y="644" width="260" height="120" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="425" y="657" width="4" height="94" rx="2" fill="#4678a3"/>
+<text x="441" y="672" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">S_BIAS</text>
+<text x="441" y="696" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16个偏置同步读及收尾</text>
+<text x="441" y="716" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">17拍</text>
+</g>
+<g class="block" data-key="S_MAC" data-routes="core" data-info="S_MAC：64项流水乘累加及收尾；66拍" tabindex="0" role="button" aria-label="S_MAC"><title>S_MAC：64项流水乘累加及收尾；66拍</title>
+<rect class="outline" x="760" y="644" width="260" height="120" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="760" y="657" width="4" height="94" rx="2" fill="#7766a0"/>
+<text x="776" y="672" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">S_MAC</text>
+<text x="776" y="696" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">64项流水乘累加及收尾</text>
+<text x="776" y="716" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">66拍</text>
+</g>
+<g class="block" data-key="S_ROUND" data-routes="core" data-info="S_ROUND：16路同时舍入/饱和；1拍" tabindex="0" role="button" aria-label="S_ROUND"><title>S_ROUND：16路同时舍入/饱和；1拍</title>
+<rect class="outline" x="1095" y="644" width="260" height="120" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1095" y="657" width="4" height="94" rx="2" fill="#7766a0"/>
+<text x="1111" y="672" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">S_ROUND</text>
+<text x="1111" y="696" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16路同时舍入/饱和</text>
+<text x="1111" y="716" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">1拍</text>
+</g>
+<g class="block" data-key="S_WRITE" data-routes="core" data-info="S_WRITE：逐个写入16个结果；16拍" tabindex="0" role="button" aria-label="S_WRITE"><title>S_WRITE：逐个写入16个结果；16拍</title>
+<rect class="outline" x="1430" y="644" width="260" height="120" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="1430" y="657" width="4" height="94" rx="2" fill="#4678a3"/>
+<text x="1446" y="672" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">S_WRITE</text>
+<text x="1446" y="696" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">逐个写入16个结果</text>
+<text x="1446" y="716" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16拍</text>
+</g>
+<path class="wire" data-routes="core" d="M350,704 L425,704" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="387.5" y="690" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837" class="mono">START</text>
+</g>
+<path class="wire" data-routes="core" d="M685,704 L760,704" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="722.5" y="690" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">偏置齐</text>
+</g>
+<path class="wire" data-routes="core" d="M1020,704 L1095,704" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1057.5" y="690" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">末项累加</text>
+</g>
+<path class="wire" data-routes="core" d="M1355,704 L1430,704" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1392.5" y="690" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">结果暂存</text>
+</g>
+<path class="wire" data-routes="core" d="M1560,764 L1560,831 L555,831 L555,764" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1048" y="818" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">还有下一组：group+1；一行16组完成后row+1</text>
+</g>
+<path class="wire" data-routes="core" d="M1560,764 L1560,909 L220,909 L220,764" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="893" y="896" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">最后一组最后写入：DONE=1 / IRQ=1 / BUSY=0；周期最终为158400</text>
+</g>
+<path class="wire" data-routes="core" d="M220,375 L220,644" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="432" y="544" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">START事件来自合法CONTROL写入</text>
+</g>
+<text x="90" y="951" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074">S_IDLE读到旧DONE时可直接再START：自动清DONE/IRQ、周期和饱和计数；运行中重复START返回总线错误。</text>
+<g class="block" data-key="busy" data-routes="core read" data-info="共享条件：BUSY = (state != S_IDLE)：运行时主机数据访问报错；寄存器仍可读，CONTROL可写0或2，LAYER_TAG禁止写。" tabindex="0" role="button" aria-label="共享条件：BUSY = (state != S_IDLE)"><title>共享条件：BUSY = (state != S_IDLE)：运行时主机数据访问报错；寄存器仍可读，CONTROL可写0或2，LAYER_TAG禁止写。</title>
+<rect class="outline" x="40" y="1010" width="815" height="85" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="40" y="1023" width="4" height="59" rx="2" fill="#ac6837"/>
+<text x="56" y="1038" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">共享条件：BUSY = (state != S_IDLE)</text>
+<text x="56" y="1062" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">运行时主机数据访问报错；寄存器仍可读，CONTROL可写0或2，LAYER_TAG禁止写。</text>
+</g>
+<g class="block" data-key="reset" data-routes="core read xwrite" data-info="复位：rst_n异步低有效：清两套状态机、DONE、计数与数据寄存器；不清SRAM数组；释放复位由平台同步。" tabindex="0" role="button" aria-label="复位：rst_n异步低有效"><title>复位：rst_n异步低有效：清两套状态机、DONE、计数与数据寄存器；不清SRAM数组；释放复位由平台同步。</title>
+<rect class="outline" x="900" y="1010" width="840" height="85" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="900" y="1023" width="4" height="59" rx="2" fill="#ac6837"/>
+<text x="916" y="1038" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">复位：rst_n异步低有效</text>
+<text x="916" y="1062" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">清两套状态机、DONE、计数与数据寄存器；不清SRAM数组；释放复位由平台同步。</text>
+</g>
+<line x1="38" x2="1762" y1="1134" y2="1134" stroke="#dce5d8"/>
+<text x="39" y="1160" font-size="11" font-weight="400" text-anchor="start" style="fill:#728675">计算完成不是总线写响应：START响应只确认启动命令执行；任务完成由DONE或IRQ表示。</text>
+<text x="1760" y="1160" font-size="11" font-weight="400" text-anchor="end" style="fill:#728675" class="mono">99 × 64 · 64 × 256 → 99 × 256</text>
+</svg>

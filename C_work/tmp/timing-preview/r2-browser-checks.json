@@ -1,0 +1,126 @@
+{
+  "basic": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "Chrome-file",
+        "pass": true,
+        "pauseIndex": 3,
+        "checks": "ready, immediate feedback, advance, pause, step, scrub, speed, scene, finish, replay, jump"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "Edge-file",
+        "pass": true,
+        "pauseIndex": 3,
+        "checks": "ready, immediate feedback, advance, pause, step, scrub, speed, scene, finish, replay, jump"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "Chrome-http",
+        "pass": true,
+        "pauseIndex": 3,
+        "checks": "ready, immediate feedback, advance, pause, step, scrub, speed, scene, finish, replay, jump"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "Edge-http",
+        "pass": true,
+        "pauseIndex": 3,
+        "checks": "ready, immediate feedback, advance, pause, step, scrub, speed, scene, finish, replay, jump"
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "mode": "canvas-null",
+        "pass": true,
+        "errors": []
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "mode": "bad-json",
+        "pass": true,
+        "errors": [
+          "Unexpected token 'I', \"INVALID{\"m\"... is not valid JSON"
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "mode": "bad-script",
+        "pass": true,
+        "errors": [
+          "Unexpected strict mode reserved word"
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "mode": "js-disabled",
+        "pass": true,
+        "errors": []
+      }
+    }
+  ],
+  "responsive": [
+    {
+      "width": 320,
+      "scroll": 320,
+      "button": "▶ 播放时序",
+      "frame": "2 / 101"
+    },
+    {
+      "width": 390,
+      "scroll": 390,
+      "button": "▶ 播放时序",
+      "frame": "2 / 101"
+    },
+    {
+      "width": 768,
+      "scroll": 768,
+      "button": "▶ 播放时序",
+      "frame": "2 / 101"
+    },
+    {
+      "width": 1024,
+      "scroll": 1024,
+      "button": "▶ 播放时序",
+      "frame": "2 / 101"
+    }
+  ],
+  "final": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "Chrome-file-full",
+        "pass": true,
+        "renderedEdges": 264,
+        "continuousPlaybackEdges": 101,
+        "errors": []
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "name": "Edge-http-full",
+        "pass": true,
+        "renderedEdges": 264,
+        "continuousPlaybackEdges": 101,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "simulator": "Icarus Verilog version 12.0 (devel) (s20150603-1539-g2693dd32b)",
+  "host": "Windows-11-10.0.26200-SP0",
+  "wall_seconds": 153.155,
+  "data_source": "synthetic_full_size",
+  "shapes": {
+    "X": [
+      99,
+      64
+    ],
+    "W": [
+      64,
+      256
+    ],
+    "Y": [
+      99,
+      256
+    ]
+  },
+  "layers": 12,
+  "total_outputs_compared": 304128,
+  "bit_mismatches": 0,
+  "checks": [
+    {
+      "layer": 0,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 1,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 2,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 3,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 4,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 5,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 6,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 7,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 8,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 9,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 10,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    },
+    {
+      "layer": 11,
+      "outputs_compared": 25344,
+      "mismatches": 0
+    }
+  ],
+  "performance": [
+    {
+      "layer": "0",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "1",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "12672",
+      "outputs": "25344"
+    },
+    {
+      "layer": "2",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "3",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "4",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "5",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "6",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "7",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "8",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "9",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "10",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    },
+    {
+      "layer": "11",
+      "compute_cycles": "158400",
+      "host_end_to_end_cycles": "328739",
+      "saturation_count": "0",
+      "outputs": "25344"
+    }
+  ],
+  "nominal_clock_hz": 150000000,
+  "timing_closure_verified": false,
+  "real_pretrained_accuracy_verified": false,
+  "numpy_version": "1.26.4",
+  "source_sha256": {
+    "rtl/ffn_numeric_pkg.sv": "8a207817885d46b3901d18ae0a8eac99b5e3d340f0d4bfcba9e5faeac6d1ab52",
+    "rtl/ffn_sram_1rw.sv": "e5d823451d6683648a3143117324e95a548c6223dcf8f779ddfa75f2db707e5b",
+    "rtl/ffn_accel.sv": "26bb1a222b0525f626fc935543c0ca3aad94c33a471555d3d603e5b1e693fd19",
+    "tb/tb_ffn_accel.sv": "53e132aabecb7d4d74b5ca40705524ee0fb84f658b9b8841ca7bc29923caaa38"
+  },
+  "additional_checks": {
+    "c_driver_host_gcc_c11_syntax": "PASS",
+    "npz_conversion_hex_roundtrip": "PASS"
+  }
+}

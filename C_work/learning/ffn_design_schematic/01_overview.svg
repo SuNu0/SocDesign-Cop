@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1180" viewBox="0 0 1800 1180" role="img" aria-label="整体连接：主机如何访问、硬件如何计算">
+<defs><marker id="arrow-host" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#327d77"/></marker><marker id="arrow-mem" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4678a3"/></marker><marker id="arrow-core" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7766a0"/></marker><marker id="arrow-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ac6837"/></marker><marker id="arrow-plain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#526a62"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Segoe UI",sans-serif;fill:#243d37}.mono{font-family:Consolas,"Cascadia Code",monospace}.wire{fill:none;stroke-linejoin:round;stroke-linecap:round}.block{cursor:pointer}.block:hover .outline{stroke-width:2.5}.focus-dim{opacity:.12}.focus-on .outline{stroke-width:3}.focus-on.wire{stroke-width:3.8}</style>
+<rect width="1800" height="1180" fill="#fafbf8"/>
+<text x="38" y="35" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074" class="mono">FFN_ACCEL  /  RTL LOGICAL SCHEMATIC  /  SHEET 01</text>
+<text x="38" y="77" font-size="29" font-weight="700" text-anchor="start" style="fill:#243d37">整体连接：主机如何访问、硬件如何计算</text>
+<text x="39" y="104" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">实线为数据/请求通路，虚线为调度与状态。框内功能直接对应当前ffn_accel.sv，详图见后续图纸。</text>
+<rect x="285" y="132" width="1470" height="941" rx="12" fill="none" stroke="#bfcfc1" stroke-width="1.3" stroke-dasharray="8 5"/>
+<text x="302" y="155" font-size="12" font-weight="600" text-anchor="start" style="fill:#708976">ffn_accel 顶层边界 · 各功能框为逻辑划分</text>
+<g class="block" data-key="host" data-routes="xwrite read core" data-info="主机发起总线读写；平台地址译码应先减去外设基地址，再把局部字节地址送到加速器。" tabindex="0" role="button" aria-label="外部主机"><title>主机发起总线读写；平台地址译码应先减去外设基地址，再把局部字节地址送到加速器。</title>
+<rect class="outline" x="35" y="200" width="205" height="192" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="35" y="213" width="4" height="166" rx="2" fill="#327d77"/>
+<text x="51" y="228" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">外部主机</text>
+<text x="51" y="252" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">当前：SystemVerilog测试平台</text>
+<text x="51" y="272" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">后续：E203平台接入</text>
+<text x="51" y="292" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">提供局部地址与写数据</text>
+<text x="51" y="312" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">接收响应并检查rsp_err</text>
+</g>
+<g class="block" data-key="decode" data-routes="xwrite read core" data-info="cmd_ready=rst_n且host_state为H_IDLE。只有命令握手才触发访问；错误访问仍返回响应。" tabindex="0" role="button" aria-label="命令接收 + 地址译码"><title>cmd_ready=rst_n且host_state为H_IDLE。只有命令握手才触发访问；错误访问仍返回响应。</title>
+<rect class="outline" x="335" y="188" width="295" height="172" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="335" y="201" width="4" height="146" rx="2" fill="#327d77"/>
+<text x="351" y="216" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">命令接收 + 地址译码</text>
+<text x="351" y="240" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_addr[31:0] / wdata[31:0]</text>
+<text x="351" y="260" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_read / wmask[3:0]</text>
+<text x="351" y="280" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">accept = cmd_valid &amp; cmd_ready</text>
+<text x="351" y="300" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">生成dec_mem / dec_index / err</text>
+</g>
+<g class="block" data-key="regs" data-routes="core read" data-info="寄存器不是数据SRAM。CONTROL写1启动、写2清DONE，读STATUS不会清IRQ。" tabindex="0" role="button" aria-label="控制 / 状态 / 计数"><title>寄存器不是数据SRAM。CONTROL写1启动、写2清DONE，读STATUS不会清IRQ。</title>
+<rect class="outline" x="720" y="188" width="320" height="172" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="720" y="201" width="4" height="146" rx="2" fill="#ac6837"/>
+<text x="736" y="216" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">控制 / 状态 / 计数</text>
+<text x="736" y="240" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">CONTROL / STATUS / LAYER_TAG</text>
+<text x="736" y="260" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">CYCLES / SATURATIONS</text>
+<text x="736" y="280" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">M=99, K=64, N=256</text>
+<text x="736" y="300" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">DONE保持，o_irq = DONE</text>
+</g>
+<g class="block" data-key="ctrl" data-routes="core" data-info="核心状态机与总线响应状态机独立运行。运行时核心独占数据存储端口。" tabindex="0" role="button" aria-label="计算FSM + 地址发生器"><title>核心状态机与总线响应状态机独立运行。运行时核心独占数据存储端口。</title>
+<rect class="outline" x="1150" y="188" width="450" height="172" rx="9" fill="#fcf3e8" stroke="#ac6837" stroke-width="1.4"/>
+<rect x="1150" y="201" width="4" height="146" rx="2" fill="#ac6837"/>
+<text x="1166" y="216" font-size="16" font-weight="700" text-anchor="start" style="fill:#ac6837">计算FSM + 地址发生器</text>
+<text x="1166" y="240" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">S_IDLE → BIAS → MAC → ROUND → WRITE</text>
+<text x="1166" y="260" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">row_index[6:0] / group_index[3:0]</text>
+<text x="1166" y="280" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">mac_issue：0…63 / write_lane：0…15</text>
+<text x="1166" y="300" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">产生各SRAM的核心地址、en、we</text>
+</g>
+<path class="wire" data-routes="xwrite read core" d="M240,250 L335,250" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite read core">
+<text x="287" y="239" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">命令</text>
+</g>
+<path class="wire" data-routes="xwrite read core" d="M335,307 L240,307" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite read core">
+<text x="287" y="295" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">cmd_ready</text>
+</g>
+<path class="wire" data-routes="read core" d="M630,240 L720,240" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="read core">
+<text x="674" y="229" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">寄存器访问</text>
+</g>
+<path class="wire" data-routes="core" d="M1040,240 L1150,240" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1094" y="228" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">START / 清DONE</text>
+</g>
+<path class="wire" data-routes="core" d="M1370,360 L1370,388 L670,388 L670,460 L630,460" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="970" y="380" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">核心地址与使能</text>
+</g>
+<path class="wire" data-routes="core read" d="M1150,302 L1040,302" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core read">
+<text x="1095" y="327" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837">BUSY / DONE / 计数</text>
+</g>
+<g class="block" data-key="access" data-routes="xwrite read core" data-info="存储器均为单端口；本设计通过访问选择保证主机与核心不会争用同一个存储端口。" tabindex="0" role="button" aria-label="存储访问选择"><title>存储器均为单端口；本设计通过访问选择保证主机与核心不会争用同一个存储端口。</title>
+<rect class="outline" x="335" y="430" width="295" height="220" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="335" y="443" width="4" height="194" rx="2" fill="#327d77"/>
+<text x="351" y="458" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">存储访问选择</text>
+<text x="351" y="482" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">空闲：host_mem选择主机请求</text>
+<text x="351" y="502" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">运行：计算FSM提供请求</text>
+<text x="351" y="522" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">主机忙时访问数据 → 返回错误</text>
+<text x="351" y="542" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">X / W / b：主机可读写</text>
+<text x="351" y="562" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">Y：主机只读，核心可写</text>
+</g>
+<path class="wire" data-routes="xwrite read" d="M485,360 L485,430" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite read">
+<text x="562" y="406" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">dec_mem / dec_index</text>
+</g>
+<g class="block" data-key="x" data-routes="xwrite read core" data-info="同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。" tabindex="0" role="button" aria-label="X 输入SRAM"><title>同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。</title>
+<rect class="outline" x="735" y="430" width="290" height="108" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="735" y="443" width="4" height="82" rx="2" fill="#4678a3"/>
+<text x="751" y="458" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">X 输入SRAM</text>
+<text x="751" y="482" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">6336 × 16 bit</text>
+<text x="751" y="502" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">2 × 4096深度块</text>
+</g>
+<path class="wire" data-routes="xwrite read core" d="M630,475 L660,475 L660,468 L735,468" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite read core">
+<text x="680" y="448" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">地址 / en / we</text>
+</g>
+<g class="block" data-key="w" data-routes="read core" data-info="同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。" tabindex="0" role="button" aria-label="W 权重SRAM"><title>同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。</title>
+<rect class="outline" x="735" y="572" width="290" height="108" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="735" y="585" width="4" height="82" rx="2" fill="#4678a3"/>
+<text x="751" y="600" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">W 权重SRAM</text>
+<text x="751" y="624" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16 bank × 1024 × 16 bit</text>
+<text x="751" y="644" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16个bank可同时读</text>
+</g>
+<path class="wire" data-routes="read core" d="M630,505 L673,505 L673,610 L735,610" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="block" data-key="b" data-routes="read core" data-info="同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。" tabindex="0" role="button" aria-label="b 偏置SRAM"><title>同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。</title>
+<rect class="outline" x="735" y="714" width="290" height="108" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="735" y="727" width="4" height="82" rx="2" fill="#4678a3"/>
+<text x="751" y="742" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">b 偏置SRAM</text>
+<text x="751" y="766" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">256 × 16 bit</text>
+<text x="751" y="786" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">2 × 128深度块</text>
+</g>
+<path class="wire" data-routes="read core" d="M630,535 L686,535 L686,752 L735,752" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="block" data-key="y" data-routes="read core" data-info="同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。" tabindex="0" role="button" aria-label="Y 输出SRAM"><title>同步单端口16位存储。容量来自ffn_banked_sram或权重的16个独立ffn_sram_1rw实例。</title>
+<rect class="outline" x="735" y="856" width="290" height="108" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="735" y="869" width="4" height="82" rx="2" fill="#4678a3"/>
+<text x="751" y="884" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">Y 输出SRAM</text>
+<text x="751" y="908" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">25344 × 16 bit</text>
+<text x="751" y="928" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">7 × 4096深度块</text>
+</g>
+<path class="wire" data-routes="read core" d="M630,565 L699,565 L699,894 L735,894" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<rect x="1100" y="412" width="605" height="586" rx="12" fill="none" stroke="#cfc3de" stroke-width="1.3" stroke-dasharray="8 5"/>
+<text x="1117" y="435" font-size="12" font-weight="600" text-anchor="start" style="fill:#708976">16路并行计算通路 · 详见图03</text>
+<g class="block" data-key="mul" data-routes="core" data-info="所有16路同时计算同一输入行的16个输出列。乘积经过32位寄存器，不直接组合累加。" tabindex="0" role="button" aria-label="16路乘法 + 乘积寄存器"><title>所有16路同时计算同一输入行的16个输出列。乘积经过32位寄存器，不直接组合累加。</title>
+<rect class="outline" x="1210" y="455" width="365" height="88" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1210" y="468" width="4" height="62" rx="2" fill="#7766a0"/>
+<text x="1226" y="483" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">16路乘法 + 乘积寄存器</text>
+<text x="1226" y="507" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">signed16 × signed16 → signed32</text>
+<text x="1226" y="527" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">同一个X广播，16个W分别输入</text>
+</g>
+<g class="block" data-key="acc" data-routes="core" data-info="16路40位累加器：先预置(b &lt;&lt; 8)，再累加64项；乘积先符号扩展到40位" tabindex="0" role="button" aria-label="16路40位累加器"><title>16路40位累加器：先预置(b &lt;&lt; 8)，再累加64项；乘积先符号扩展到40位</title>
+<rect class="outline" x="1210" y="581" width="365" height="88" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1210" y="594" width="4" height="62" rx="2" fill="#7766a0"/>
+<text x="1226" y="609" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">16路40位累加器</text>
+<text x="1226" y="633" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">先预置(b &lt;&lt; 8)，再累加64项</text>
+<text x="1226" y="653" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">乘积先符号扩展到40位</text>
+</g>
+<g class="block" data-key="quant" data-routes="core" data-info="16路舍入 + 饱和：16位小数 → 8位小数；饱和标志汇总到SATURATIONS" tabindex="0" role="button" aria-label="16路舍入 + 饱和"><title>16路舍入 + 饱和：16位小数 → 8位小数；饱和标志汇总到SATURATIONS</title>
+<rect class="outline" x="1210" y="707" width="365" height="88" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1210" y="720" width="4" height="62" rx="2" fill="#7766a0"/>
+<text x="1226" y="735" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">16路舍入 + 饱和</text>
+<text x="1226" y="759" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16位小数 → 8位小数</text>
+<text x="1226" y="779" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">饱和标志汇总到SATURATIONS</text>
+</g>
+<g class="block" data-key="buffer" data-routes="core" data-info="结果暂存 + 16选1写回：output_buffer：16 × 16 bit；write_lane每拍选择一个结果" tabindex="0" role="button" aria-label="结果暂存 + 16选1写回"><title>结果暂存 + 16选1写回：output_buffer：16 × 16 bit；write_lane每拍选择一个结果</title>
+<rect class="outline" x="1210" y="833" width="365" height="88" rx="9" fill="#f3f0fa" stroke="#7766a0" stroke-width="1.4"/>
+<rect x="1210" y="846" width="4" height="62" rx="2" fill="#7766a0"/>
+<text x="1226" y="861" font-size="16" font-weight="700" text-anchor="start" style="fill:#7766a0">结果暂存 + 16选1写回</text>
+<text x="1226" y="885" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">output_buffer：16 × 16 bit</text>
+<text x="1226" y="905" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">write_lane每拍选择一个结果</text>
+</g>
+<path class="wire" data-routes="core" d="M1025,465 L1210,482" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1114" y="452" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3">X：16 bit广播</text>
+</g>
+<path class="wire" data-routes="core" d="M1025,610 L1070,610 L1070,519 L1210,519" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1135" y="509" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3">W：16 × 16 bit</text>
+</g>
+<path class="wire" data-routes="core" d="M1025,752 L1130,752 L1130,625 L1210,625" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1121" y="683" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3">b：16 bit，依次预置</text>
+</g>
+<path class="wire" data-routes="core" d="M1392,543 L1392,581" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<path class="wire" data-routes="core" d="M1392,669 L1392,707" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<path class="wire" data-routes="core" d="M1392,795 L1392,833" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<path class="wire" data-routes="core" d="M1210,880 L1025,910" stroke="#7766a0" stroke-width="1.8" marker-end="url(#arrow-core)"/>
+<g class="wirelabel" data-routes="core">
+<text x="1112" y="924" font-size="11" font-weight="400" text-anchor="middle" style="fill:#7766a0">Y写数据：16 bit / 拍</text>
+</g>
+<g class="block" data-key="response" data-routes="read" data-info="host_read_mem和host_read_bank在读命令接受时锁存，确保后续响应选择正确数据。错误响应返回err=1、rdata=0。" tabindex="0" role="button" aria-label="读回选择 + 响应寄存器"><title>host_read_mem和host_read_bank在读命令接受时锁存，确保后续响应选择正确数据。错误响应返回err=1、rdata=0。</title>
+<rect class="outline" x="335" y="786" width="295" height="200" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="335" y="799" width="4" height="174" rx="2" fill="#327d77"/>
+<text x="351" y="814" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">读回选择 + 响应寄存器</text>
+<text x="351" y="838" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">选择X / W[bank] / b / Y读数</text>
+<text x="351" y="858" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">16 → 32 bit符号扩展</text>
+<text x="351" y="878" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">寄存器读：直接响应</text>
+<text x="351" y="898" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">SRAM读：多经过H_READ一拍</text>
+<text x="351" y="918" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">响应保持到rsp_valid &amp; rsp_ready</text>
+</g>
+<path class="wire" data-routes="read" d="M735,513 L707,513 L707,821 L630,821" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<path class="wire" data-routes="read" d="M735,655 L694,655 L694,858 L630,858" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<path class="wire" data-routes="read" d="M735,797 L681,797 L681,895 L630,895" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<path class="wire" data-routes="read" d="M735,939 L668,939 L668,932 L630,932" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<path class="wire" data-routes="read xwrite core" d="M335,867 L268,867 L268,430 L139,430 L139,392" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="read xwrite core">
+<text x="170" y="680" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">rsp_valid / rdata[31:0] / err</text>
+</g>
+<path class="wire" data-routes="read xwrite core" d="M200,392 L200,740 L318,740 L318,806 L335,806" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="read xwrite core">
+<text x="157" y="560" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">rsp_ready</text>
+</g>
+<path class="wire" data-routes="core" d="M720,327 L649,327 L649,145 L141,145 L141,200" stroke="#ac6837" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-ctrl)"/>
+<g class="wirelabel" data-routes="core">
+<text x="430" y="139" font-size="11" font-weight="400" text-anchor="middle" style="fill:#ac6837" class="mono">o_irq</text>
+</g>
+<text x="1110" y="1020" font-size="11" font-weight="400" text-anchor="start" style="fill:#6b8074">clk送各时序单元；rst_n复位控制与数据寄存器，SRAM数组保留。</text>
+<text x="1110" y="1040" font-size="11" font-weight="400" text-anchor="start" style="fill:#6b8074">所有SRAM框是当前RTL抽象；正式宏替换与工艺实现仍待完成。</text>
+<line x1="38" x2="1762" y1="1124" y2="1124" stroke="#dce5d8"/>
+<text x="39" y="1150" font-size="11" font-weight="400" text-anchor="start" style="fill:#728675">跨线无圆点表示不连接；主机地址为局部字节地址；所有数据写入仅使用wdata[15:0]。</text>
+<text x="1760" y="1150" font-size="11" font-weight="400" text-anchor="end" style="fill:#728675" class="mono">99 × 64 · 64 × 256 → 99 × 256</text>
+</svg>

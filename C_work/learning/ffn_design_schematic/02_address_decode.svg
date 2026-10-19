@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1240" viewBox="0 0 1800 1240" role="img" aria-label="地址译码：写X[98,63]如何落到SRAM">
+<defs><marker id="arrow-host" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#327d77"/></marker><marker id="arrow-mem" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4678a3"/></marker><marker id="arrow-core" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7766a0"/></marker><marker id="arrow-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ac6837"/></marker><marker id="arrow-plain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#526a62"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Segoe UI",sans-serif;fill:#243d37}.mono{font-family:Consolas,"Cascadia Code",monospace}.wire{fill:none;stroke-linejoin:round;stroke-linecap:round}.block{cursor:pointer}.block:hover .outline{stroke-width:2.5}.focus-dim{opacity:.12}.focus-on .outline{stroke-width:3}.focus-on.wire{stroke-width:3.8}</style>
+<rect width="1800" height="1240" fill="#fafbf8"/>
+<text x="38" y="35" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074" class="mono">FFN_ACCEL  /  RTL LOGICAL SCHEMATIC  /  SHEET 02</text>
+<text x="38" y="77" font-size="29" font-weight="700" text-anchor="start" style="fill:#243d37">地址译码：写X[98,63]如何落到SRAM</text>
+<text x="39" y="104" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">示例：i_icb_cmd_addr=0x162FC，i_icb_cmd_read=0，wmask=0xF，核心空闲。</text>
+<g class="block" data-key="addrin" data-routes="xwrite" data-info="地址由i_icb_cmd_addr输入；数据由i_icb_cmd_wdata输入，数据值本身不标记X/W/b/Y类别。" tabindex="0" role="button" aria-label="主机输入"><title>地址由i_icb_cmd_addr输入；数据由i_icb_cmd_wdata输入，数据值本身不标记X/W/b/Y类别。</title>
+<rect class="outline" x="40" y="159" width="315" height="175" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="40" y="172" width="4" height="149" rx="2" fill="#327d77"/>
+<text x="56" y="187" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">主机输入</text>
+<text x="56" y="211" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_addr[31:0] = 0x000162FC</text>
+<text x="56" y="231" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_wdata[31:0] = 0x00000180</text>
+<text x="56" y="251" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_read = 0 / wmask = 0xF</text>
+<text x="56" y="271" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">cmd_valid=1 &amp; cmd_ready=1</text>
+</g>
+<g class="block" data-key="decode" data-routes="xwrite" data-info="区间上界不包含在内。cmd_ready只说明命令可接受，访问成功还要检查响应rsp_err。" tabindex="0" role="button" aria-label="地址范围比较 + 合法性检查"><title>区间上界不包含在内。cmd_ready只说明命令可接受，访问成功还要检查响应rsp_err。</title>
+<rect class="outline" x="440" y="159" width="350" height="175" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="440" y="172" width="4" height="149" rx="2" fill="#327d77"/>
+<text x="456" y="187" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">地址范围比较 + 合法性检查</text>
+<text x="456" y="211" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">0x10000 &lt;= addr &lt; 0x16300</text>
+<text x="456" y="231" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">addr[1:0]=0，写掩码=0xF</text>
+<text x="456" y="251" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">BUSY=0，dec_error=0</text>
+<text x="456" y="271" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">dec_mem = MEM_X</text>
+</g>
+<g class="block" data-key="index" data-routes="xwrite" data-info="总线每4字节映射一个16位元素；x_addr是元素编号，不是字节地址。" tabindex="0" role="button" aria-label="计算逻辑元素编号"><title>总线每4字节映射一个16位元素；x_addr是元素编号，不是字节地址。</title>
+<rect class="outline" x="880" y="159" width="350" height="175" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="880" y="172" width="4" height="149" rx="2" fill="#327d77"/>
+<text x="896" y="187" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">计算逻辑元素编号</text>
+<text x="896" y="211" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">dec_index = (addr-X_BASE) &gt;&gt; 2</text>
+<text x="896" y="231" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">= (0x162FC-0x10000)/4</text>
+<text x="896" y="251" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">= 6335 = 98*64+63</text>
+<text x="896" y="271" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">x_addr[12:0] = 6335</text>
+</g>
+<g class="block" data-key="enable" data-routes="xwrite" data-info="主机访问使能与写使能：host_mem = accept &amp;&amp; !dec_error；           &amp;&amp; dec_mem!=MEM_NONE；MEM_X: x_en=1, x_we=!cmd_read；SRAM wdata = cmd_wdata[15:0]" tabindex="0" role="button" aria-label="主机访问使能与写使能"><title>主机访问使能与写使能：host_mem = accept &amp;&amp; !dec_error；           &amp;&amp; dec_mem!=MEM_NONE；MEM_X: x_en=1, x_we=!cmd_read；SRAM wdata = cmd_wdata[15:0]</title>
+<rect class="outline" x="1320" y="159" width="420" height="175" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="1320" y="172" width="4" height="149" rx="2" fill="#327d77"/>
+<text x="1336" y="187" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">主机访问使能与写使能</text>
+<text x="1336" y="211" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">host_mem = accept &amp;&amp; !dec_error</text>
+<text x="1336" y="231" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">           &amp;&amp; dec_mem!=MEM_NONE</text>
+<text x="1336" y="251" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">MEM_X: x_en=1, x_we=!cmd_read</text>
+<text x="1336" y="271" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">SRAM wdata = cmd_wdata[15:0]</text>
+</g>
+<path class="wire" data-routes="xwrite" d="M355,238 L440,238" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite">
+<text x="397" y="225" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">32 bit</text>
+</g>
+<path class="wire" data-routes="xwrite" d="M790,238 L880,238" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite">
+<text x="835" y="225" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">命中X窗口</text>
+</g>
+<path class="wire" data-routes="xwrite" d="M1230,238 L1320,238" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite">
+<text x="1275" y="225" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77">合法写X</text>
+</g>
+<rect x="430" y="400" width="1310" height="430" rx="12" fill="none" stroke="#bfcfc1" stroke-width="1.3" stroke-dasharray="8 5"/>
+<text x="447" y="423" font-size="12" font-weight="600" text-anchor="start" style="fill:#708976">u_x : ffn_banked_sram  /  DEPTH=6336  /  BANK_DEPTH=4096</text>
+<g class="block" data-key="bankselect" data-routes="xwrite" data-info="X的两个块用于增加深度，逻辑上仍只有一个端口；它们与权重的16路并行bank用途不同。" tabindex="0" role="button" aria-label="容量块选择 + 块内地址"><title>X的两个块用于增加深度，逻辑上仍只有一个端口；它们与权重的16路并行bank用途不同。</title>
+<rect class="outline" x="465" y="454" width="360" height="150" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="465" y="467" width="4" height="124" rx="2" fill="#4678a3"/>
+<text x="481" y="482" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">容量块选择 + 块内地址</text>
+<text x="481" y="506" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">bank_select = x_addr &gt;&gt; 12 = 1</text>
+<text x="481" y="526" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">bank_addr = x_addr[11:0]</text>
+<text x="481" y="546" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">          = 2239 (0x8BF)</text>
+<text x="481" y="566" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">6335 = 1*4096 + 2239</text>
+</g>
+<g class="block" data-key="xbank0" data-routes="" data-info="本次地址属于块1，所以块0的en=0。" tabindex="0" role="button" aria-label="X块0：4096 × 16 bit"><title>本次地址属于块1，所以块0的en=0。</title>
+<rect class="outline" x="930" y="454" width="335" height="150" rx="9" fill="#f6f8f3" stroke="#526a62" stroke-width="1.4"/>
+<rect x="930" y="467" width="4" height="124" rx="2" fill="#526a62"/>
+<text x="946" y="482" font-size="16" font-weight="700" text-anchor="start" style="fill:#526a62">X块0：4096 × 16 bit</text>
+<text x="946" y="506" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">元素编号0…4095</text>
+<text x="946" y="526" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">en = x_en &amp;&amp; (bank_select==0)</text>
+<text x="946" y="546" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">当前en=0，不发生写入</text>
+<text x="946" y="566" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">未被选中的块保持内容</text>
+</g>
+<g class="block" data-key="xbank1" data-routes="xwrite" data-info="X块1：4096 × 16 bit：元素编号4096…6335有效；en=1 / we=1 / addr=2239；wdata=0x0180（Q8.8实数1.5）；上升沿：mem[2239] &lt;= 0x0180" tabindex="0" role="button" aria-label="X块1：4096 × 16 bit"><title>X块1：4096 × 16 bit：元素编号4096…6335有效；en=1 / we=1 / addr=2239；wdata=0x0180（Q8.8实数1.5）；上升沿：mem[2239] &lt;= 0x0180</title>
+<rect class="outline" x="1350" y="454" width="335" height="150" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="1350" y="467" width="4" height="124" rx="2" fill="#4678a3"/>
+<text x="1366" y="482" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">X块1：4096 × 16 bit</text>
+<text x="1366" y="506" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">元素编号4096…6335有效</text>
+<text x="1366" y="526" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">en=1 / we=1 / addr=2239</text>
+<text x="1366" y="546" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">wdata=0x0180（Q8.8实数1.5）</text>
+<text x="1366" y="566" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">上升沿：mem[2239] &lt;= 0x0180</text>
+</g>
+<path class="wire" data-routes="xwrite" d="M1055,334 L1055,376 L646,376 L646,454" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite">
+<text x="808" y="365" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">x_addr[12:0]</text>
+</g>
+<path class="wire" data-routes="" d="M825,500 L930,500" stroke="#526a62" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrow-plain)"/>
+<g class="wirelabel" data-routes="">
+<text x="877" y="486" font-size="11" font-weight="400" text-anchor="middle" style="fill:#526a62" class="mono">en=0</text>
+</g>
+<path class="wire" data-routes="xwrite" d="M825,567 L880,567 L880,657 L1518,657 L1518,604" stroke="#4678a3" stroke-width="1.8" marker-end="url(#arrow-mem)"/>
+<g class="wirelabel" data-routes="xwrite">
+<text x="1163" y="647" font-size="11" font-weight="400" text-anchor="middle" style="fill:#4678a3" class="mono">bank=1 / addr[11:0]=2239</text>
+</g>
+<path class="wire" data-routes="xwrite" d="M1530,334 L1762,334 L1762,524 L1685,524" stroke="#327d77" stroke-width="1.8" marker-end="url(#arrow-host)"/>
+<g class="wirelabel" data-routes="xwrite">
+<text x="1640" y="371" font-size="11" font-weight="400" text-anchor="middle" style="fill:#327d77" class="mono">en / we / wdata[15:0]</text>
+</g>
+<g class="block" data-key="response" data-routes="xwrite" data-info="合法写入发生在命令接受沿；响应反压不会使存储器重复写入。" tabindex="0" role="button" aria-label="命令沿之后的响应"><title>合法写入发生在命令接受沿；响应反压不会使存储器重复写入。</title>
+<rect class="outline" x="80" y="450" width="280" height="154" rx="9" fill="#edf7f2" stroke="#327d77" stroke-width="1.4"/>
+<rect x="80" y="463" width="4" height="128" rx="2" fill="#327d77"/>
+<text x="96" y="478" font-size="16" font-weight="700" text-anchor="start" style="fill:#327d77">命令沿之后的响应</text>
+<text x="96" y="502" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">o_icb_rsp_valid = 1</text>
+<text x="96" y="522" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">o_icb_rsp_err = 0</text>
+<text x="96" y="542" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62" class="mono">host_state = H_RESPONSE</text>
+<text x="96" y="562" font-size="12" font-weight="400" text-anchor="start" style="fill:#526a62">等待rsp_ready接收</text>
+</g>
+<text x="470" y="715" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">读操作：所选块在上升沿更新rdata，同时寄存read_select；输出MUX选择对应块的读数。</text>
+<text x="470" y="735" font-size="13" font-weight="400" text-anchor="start" style="fill:#6b8074">写操作：本沿只修改选中块内容，rdata保持原值。复位不清mem数组。</text>
+<g class="block" data-key="result" data-routes="xwrite" data-info="本次写入结果：X[98,63] → 逻辑元素6335 → 容量块1的2239号位置" tabindex="0" role="button" aria-label="本次写入结果：X[98,63] → 逻辑元素6335 → 容量块1的2239号位置"><title>本次写入结果：X[98,63] → 逻辑元素6335 → 容量块1的2239号位置</title>
+<rect class="outline" x="465" y="755" width="1220" height="51" rx="9" fill="#eef5fb" stroke="#4678a3" stroke-width="1.4"/>
+<rect x="465" y="768" width="4" height="25" rx="2" fill="#4678a3"/>
+<text x="481" y="783" font-size="16" font-weight="700" text-anchor="start" style="fill:#4678a3">本次写入结果：X[98,63] → 逻辑元素6335 → 容量块1的2239号位置</text>
+</g>
+<text x="44" y="889" font-size="20" font-weight="700" text-anchor="start" style="fill:#243d37">其他区域使用同一套地址译码规则</text>
+<rect x="40" y="903" width="1700" height="43" rx="5" fill="#eff4eb"/>
+<text x="55" y="925" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">X 输入</text>
+<text x="225" y="925" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">0x10000…0x162FC</text>
+<text x="530" y="925" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">(addr-0x10000)&gt;&gt;2</text>
+<text x="890" y="925" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">x_addr[12:0]</text>
+<text x="1490" y="925" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">空闲可读写</text>
+<rect x="40" y="951" width="1700" height="43" rx="5" fill="#f7f9f4"/>
+<text x="55" y="973" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">W 权重</text>
+<text x="225" y="973" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">0x20000…0x2FFFC</text>
+<text x="530" y="973" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">idx=(addr-0x20000)&gt;&gt;2</text>
+<text x="890" y="973" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">bank=idx[3:0], addr=idx[13:4]</text>
+<text x="1490" y="973" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">空闲可读写</text>
+<rect x="40" y="999" width="1700" height="43" rx="5" fill="#eff4eb"/>
+<text x="55" y="1021" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">b 偏置</text>
+<text x="225" y="1021" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">0x30000…0x303FC</text>
+<text x="530" y="1021" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">(addr-0x30000)&gt;&gt;2</text>
+<text x="890" y="1021" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">b_addr[7:0]</text>
+<text x="1490" y="1021" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">空闲可读写</text>
+<rect x="40" y="1047" width="1700" height="43" rx="5" fill="#f7f9f4"/>
+<text x="55" y="1069" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">Y 输出</text>
+<text x="225" y="1069" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">0x40000…0x58BFC</text>
+<text x="530" y="1069" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">(addr-0x40000)&gt;&gt;2</text>
+<text x="890" y="1069" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37" class="mono">y_addr[14:0]</text>
+<text x="1490" y="1069" font-size="13" font-weight="400" text-anchor="start" style="fill:#243d37">主机只读，核心写</text>
+<text x="45" y="1140" font-size="12" font-weight="400" text-anchor="start" style="fill:#6b8074">W线性元素编号idx=k*256+j，因此bank=j%16，bank内地址=k*16+floor(j/16)。W上界0x30000恰是b首地址。</text>
+<line x1="38" x2="1762" y1="1184" y2="1184" stroke="#dce5d8"/>
+<text x="39" y="1210" font-size="11" font-weight="400" text-anchor="start" style="fill:#728675">图中块号从0开始。每元素虽为16位，总线地址槽仍为4字节；CPU绝对地址还需加平台分配的外设基地址。</text>
+<text x="1760" y="1210" font-size="11" font-weight="400" text-anchor="end" style="fill:#728675" class="mono">99 × 64 · 64 × 256 → 99 × 256</text>
+</svg>

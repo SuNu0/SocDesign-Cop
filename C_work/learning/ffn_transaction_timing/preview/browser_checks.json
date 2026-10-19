@@ -1,0 +1,16 @@
+[
+  {
+    "browser": "Edge",
+    "status": "PASS",
+    "scenes": 96,
+    "framesRendered": 719,
+    "checks": "file open; play/pause/replay; speed; steps; scrub; search; filters; guide; edge jumps; all signals; responsive 390/768/1024/1540; no page errors"
+  },
+  {
+    "browser": "Chrome",
+    "status": "PASS",
+    "scenes": 96,
+    "framesRendered": 0,
+    "checks": "file open; play/pause/replay; speed; steps; scrub; search; filters; guide; edge jumps; all signals; responsive 390/768/1024/1540; no page errors"
+  }
+]

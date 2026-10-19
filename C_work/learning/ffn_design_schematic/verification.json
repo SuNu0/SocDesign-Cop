@@ -1,0 +1,7 @@
+{
+  "viewer": "PASS",
+  "sheets": 4,
+  "svgExports": 4,
+  "checks": "tabs, highlighting, module descriptions, zoom, fit, SVG download, offline file open, mobile width",
+  "overflows": []
+}

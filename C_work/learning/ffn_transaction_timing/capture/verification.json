@@ -1,0 +1,26 @@
+{
+  "clock_period_ps": 10000,
+  "post_delay_ps": 1,
+  "source": "Icarus Verilog / unchanged RTL",
+  "checks": 215,
+  "cases": 96,
+  "frames": 719,
+  "hashes": {
+    "rtl\\ffn_numeric_pkg.sv": "8a207817885d46b3901d18ae0a8eac99b5e3d340f0d4bfcba9e5faeac6d1ab52",
+    "rtl\\ffn_sram_1rw.sv": "e5d823451d6683648a3143117324e95a548c6223dcf8f779ddfa75f2db707e5b",
+    "rtl\\ffn_accel.sv": "26bb1a222b0525f626fc935543c0ca3aad94c33a471555d3d603e5b1e693fd19"
+  },
+  "tb_sha256": "2ab8a0f955155739430f889ea88c3c3f96214598ccc1193d5ff2ba13a7dafecc",
+  "synthetic": true,
+  "status": "PASS",
+  "categories": {
+    "数据写入": 6,
+    "数据读回": 8,
+    "寄存器读取": 11,
+    "控制与层号": 8,
+    "握手与等待": 8,
+    "错误与保护": 21,
+    "忙时访问": 24,
+    "完成与复位": 10
+  }
+}

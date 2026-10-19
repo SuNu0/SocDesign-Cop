@@ -1,0 +1,31 @@
+ffn_accel (top)
+├─ gen_weight[0].u_mem : ffn_sram_1rw
+├─ gen_weight[1].u_mem : ffn_sram_1rw
+├─ gen_weight[2].u_mem : ffn_sram_1rw
+├─ gen_weight[3].u_mem : ffn_sram_1rw
+├─ gen_weight[4].u_mem : ffn_sram_1rw
+├─ gen_weight[5].u_mem : ffn_sram_1rw
+├─ gen_weight[6].u_mem : ffn_sram_1rw
+├─ gen_weight[7].u_mem : ffn_sram_1rw
+├─ gen_weight[8].u_mem : ffn_sram_1rw
+├─ gen_weight[9].u_mem : ffn_sram_1rw
+├─ gen_weight[10].u_mem : ffn_sram_1rw
+├─ gen_weight[11].u_mem : ffn_sram_1rw
+├─ gen_weight[12].u_mem : ffn_sram_1rw
+├─ gen_weight[13].u_mem : ffn_sram_1rw
+├─ gen_weight[14].u_mem : ffn_sram_1rw
+├─ gen_weight[15].u_mem : ffn_sram_1rw
+├─ u_bias : ffn_banked_sram
+│  ├─ gen_bank[0].u_mem : ffn_sram_1rw
+│  └─ gen_bank[1].u_mem : ffn_sram_1rw
+├─ u_x : ffn_banked_sram
+│  ├─ gen_bank[0].u_mem : ffn_sram_1rw
+│  └─ gen_bank[1].u_mem : ffn_sram_1rw
+└─ u_y : ffn_banked_sram
+   ├─ gen_bank[0].u_mem : ffn_sram_1rw
+   ├─ gen_bank[1].u_mem : ffn_sram_1rw
+   ├─ gen_bank[2].u_mem : ffn_sram_1rw
+   ├─ gen_bank[3].u_mem : ffn_sram_1rw
+   ├─ gen_bank[4].u_mem : ffn_sram_1rw
+   ├─ gen_bank[5].u_mem : ffn_sram_1rw
+   └─ gen_bank[6].u_mem : ffn_sram_1rw
